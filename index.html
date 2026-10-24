@@ -11,7 +11,7 @@
   <meta property="og:site_name" content="LUTE Milazzo">
   <meta property="og:title" content="LUTE · Galleria Lezioni della Settimana (dal 12 al 16 ottobre 2026)">
   <meta property="og:description" content="37 lezioni: tocca per vedere giorno, aula, orario e docente di ogni corso.">
-  <meta property="og:image" content="https://pxh2407.github.io/galleria-lezioni-lute/images/copertina-2026-10-12.jpg">
+  <meta property="og:image" content="https://pxh2407.github.io/orario/images/copertina-2026-10-12.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
@@ -857,7 +857,7 @@
         }
       } catch (err) {
         // Aperta dalla copia sul PC (file://): il browser non lascia leggere dati/settimana.json → vado al sito
-        if (location.protocol === 'file:') { location.replace('https://pxh2407.github.io/galleria-lezioni-lute/'); return; }
+        if (location.protocol === 'file:') { location.replace('https://pxh2407.github.io/orario/'); return; }
         document.getElementById('galleryView').innerHTML =
           '<p class="text-sm text-slate-600 col-span-full">Non riesco a caricare l\'orario. Controlla la connessione e ricarica la pagina.</p>';
         return;
