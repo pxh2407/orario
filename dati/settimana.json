@@ -2,7 +2,7 @@
  "dal": "2026-10-26",
  "al": "2026-10-30",
  "aggiornato": "2026-10-24",
- "pubblicato": "2026-10-24T12:13:54.000Z",
+ "pubblicato": "2026-10-24T13:43:28.000Z",
  "versioneImmagini": 1,
  "lezioni": [
   {
@@ -107,7 +107,9 @@
    "category": "Giochi & Socialità",
    "categoryColor": "bg-purple-600",
    "cod": "245",
-   "description": "Tavoli di gioco strategico e socialità. Studio delle regole federali, combinazioni di carte, prese dal monte scarti e gestione del pozzetto con tornei amichevoli."
+   "description": "Tavoli di gioco strategico e socialità. Studio delle regole federali, combinazioni di carte, prese dal monte scarti e gestione del pozzetto con tornei amichevoli.",
+   "sospesa": true,
+   "riprende": "2026-11-02"
   },
   {
    "id": "LUN-8",
@@ -328,7 +330,9 @@
    "category": "Salute & Prevenzione",
    "categoryColor": "bg-red-600",
    "cod": "800A",
-   "description": "Incontri informativi su corretti stili di vita, prevenzione cardiovascolare, alimentazione equilibrata e sana longevità."
+   "description": "Incontri informativi su corretti stili di vita, prevenzione cardiovascolare, alimentazione equilibrata e sana longevità.",
+   "sospesa": true,
+   "riprende": "2026-11-04"
   },
   {
    "id": "MER-4",

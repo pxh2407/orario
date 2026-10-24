@@ -4,6 +4,7 @@
 
 const RACCONTO = (() => {
   const GUIDE_R = typeof GUIDE !== 'undefined' ? GUIDE : require('./guide.js').GUIDE;
+  const A4 = typeof FOGLIO_A4 !== 'undefined' ? FOGLIO_A4 : require('./foglio-a4.js');   // testi della ripresa
   const GIORNI = ['LUNEDÌ', 'MARTEDÌ', 'MERCOLEDÌ', 'GIOVEDÌ', 'VENERDÌ'];
   const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
   const SALUTI = ['Buongiorno', 'Buonasera'];
@@ -106,9 +107,12 @@ const RACCONTO = (() => {
     const aggiungi = (tipo, scritto, detto, lezione) => b.push({ tipo, testo: scritto, parlato: (detto || scritto).replace(/«|»/g, '').replace(/\bLUTE\b/g, 'Lute'), lezione });
 
     let introS = `${saluto}! Sono ${g.nome}, la vostra guida del ${giornoMin}. `, introD = introS;
+    // "riprende lunedì 2 novembre" → detto "riprende lunedì primo novembre" se è il primo del mese
+    const ripresa = l => l.riprende ? ', ' + A4.ripresaLunga(l).replace(/ 1 /, ' primo ') : '';
     if (!attive.length) {
       const motivo = lez.find(l => l.motivo)?.motivo;
-      const t = `Attenzione: ${giornoMin} ${dataBreve(settimana, giorno)} le lezioni sono sospese${motivo ? ' (' + motivo + ')' : ''}.`;
+      const rip = lez.every(l => l.riprende === lez[0].riprende) ? ripresa(lez[0]).replace('riprende', 'riprendono') : '';
+      const t = `Attenzione: ${giornoMin} ${dataBreve(settimana, giorno)} le lezioni sono sospese${motivo ? ' (' + motivo + ')' : ''}${rip}.`;
       aggiungi('intro', introS + t, introD + t);
     } else {
       const inizio = attive.map(l => l.startTime).sort()[0];
@@ -127,7 +131,7 @@ const RACCONTO = (() => {
         const con = d => doc ? (/\bcon\b/i.test(d) ? ', a cura di ' : ', con ') + doc : '';
         if (l.sospesa) {
           const m = l.motivo ? `: ${l.motivo}` : '';
-          aggiungi('lezione', `Attenzione: questa settimana ${tS} è sospesa${m}.`, `Attenzione: questa settimana ${tD} è sospesa${m}.`, l);
+          aggiungi('lezione', `Attenzione: questa settimana ${tS} è sospesa${m}${ripresa(l)}.`, `Attenzione: questa settimana ${tD} è sospesa${m}${ripresa(l)}.`, l);
           continue;
         }
         const gruppo = attive.filter(x => x.startTime === l.startTime), n = gruppo.length, k = gruppo.indexOf(l);

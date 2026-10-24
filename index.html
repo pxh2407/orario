@@ -16,6 +16,9 @@
   <!-- Phosphor Icons -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
+  <!-- Foglio A4 e testi delle lezioni sospese (in comune con Gestione Orario) -->
+  <script src="foglio-a4.js"></script>
+
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -101,25 +104,7 @@
       -webkit-backdrop-filter: blur(12px);
     }
 
-    /* ===== Sintesi Settimana: foglio A4 (794x1123 px = A4 a 96 dpi), stesso disegno del Foglio A4 di Gestione Orario ===== */
-    .a4-sheet { width: 794px; height: 1123px; background: #fff; padding: 34px 36px 24px; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; color: #1e293b; display: flex; flex-direction: column; overflow: hidden; }
-    .a4-head { display: flex; align-items: center; gap: 14px; padding-bottom: 14px; border-bottom: 3px solid #f28c38; }
-    .a4-logo { height: 50px; width: auto; flex-shrink: 0; }
-    .a4-title { font-family: 'Playfair Display', serif; font-size: 27px; font-weight: 700; color: #0d2538; line-height: 1.1; }
-    .a4-sub { font-size: 13px; color: #475569; margin-top: 4px; font-weight: 600; }
-    .a4-count { margin-left: auto; text-align: center; background: #0d2538; color: #fff; border-radius: 12px; padding: 6px 14px; font-size: 11px; font-weight: 600; line-height: 1.2; }
-    .a4-count b { display: block; font-size: 24px; font-weight: 800; }
-    .a4-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; flex: 1; min-height: 0; --k: 1; }
-    .a4-day { margin-bottom: calc(12px * var(--k)); }
-    .a4-dayhead { background: #0d2538; color: #fff; font-weight: 800; font-size: calc(13px * var(--k)); letter-spacing: 0.05em; text-transform: uppercase; padding: calc(6px * var(--k)) 10px; border-radius: 8px; display: flex; justify-content: space-between; }
-    .a4-dayhead span { font-weight: 600; letter-spacing: 0; text-transform: none; opacity: 0.8; }
-    .a4-row { display: flex; align-items: center; gap: 8px; padding: calc(6px * var(--k)) 4px; border-bottom: 1px solid #e2e8f0; }
-    .a4-time { width: 88px; flex-shrink: 0; font-weight: 700; font-size: calc(13px * var(--k)); color: #334155; }
-    .a4-aula { width: 68px; height: 20px; line-height: 20px; flex-shrink: 0; text-align: center; color: #fff; font-weight: 800; font-size: 10.5px; border-radius: 5px; padding: 0; }
-    .a4-txt { min-width: 0; }
-    .a4-txt b { display: block; font-size: calc(14px * var(--k)); line-height: 1.2; color: #0d2538; }
-    .a4-txt span { display: block; font-size: calc(11px * var(--k)); color: #64748b; line-height: 1.3; }
-    .a4-foot { border-top: 1px solid #cbd5e1; padding-top: 8px; font-size: 10.5px; color: #64748b; display: flex; justify-content: space-between; }
+    /* Sintesi Settimana: l'aspetto del foglio A4 è in foglio-a4.js (lo stesso del Foglio A4 di Gestione Orario) */
     #a4Overlay { position: fixed; inset: 0; z-index: 48; background: rgba(15,23,42,.8); overflow: auto; padding: 12px; }
     #a4Toolbar { max-width: 900px; margin: 0 auto 12px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
     #a4Toolbar button { font-size: 15px; font-weight: 700; padding: 10px 16px; border-radius: 12px; background: #fff; color: #0d2538; }
@@ -433,7 +418,7 @@
                 loading="lazy"
                 class="w-full h-full object-cover ${lesson.sospesa ? 'grayscale opacity-60' : ''}"
               >
-              ${lesson.sospesa ? `<div class="absolute inset-x-0 bottom-0 bg-red-700 text-white text-center text-sm font-bold py-1.5 px-2">LEZIONE SOSPESA${lesson.motivo ? ' · ' + escHtml(lesson.motivo) : ''}</div>` : ''}
+              ${lesson.sospesa ? `<div class="absolute inset-x-0 bottom-0 bg-red-700 text-white text-center text-sm font-bold py-1.5 px-2">⏸ SOSPESA · ${FOGLIO_A4.ripresaLunga(lesson)}</div>` : ''}
             </div>
 
             <!-- Card Content Body -->
@@ -522,7 +507,7 @@
               html += `
                 <td class="p-2 border-r border-slate-200 align-top">
                   <div onclick="openModal('${lesson.id}')" class="p-2 rounded-xl bg-white border ${lesson.sospesa ? 'border-red-300 opacity-70' : 'border-slate-200'} shadow-xs hover:border-brand-teal hover:shadow-md cursor-pointer transition">
-                    <span class="text-[10px] px-1.5 py-0.5 rounded font-bold ${bgBadge} inline-block mb-1">${lesson.aula}</span>${lesson.sospesa ? ' <span class="text-[10px] px-1.5 py-0.5 rounded font-bold bg-red-700 text-white">SOSPESA</span>' : ''}
+                    <span class="text-[10px] px-1.5 py-0.5 rounded font-bold ${bgBadge} inline-block mb-1">${lesson.aula}</span>${lesson.sospesa ? ` <span class="text-[10px] px-1.5 py-0.5 rounded font-bold bg-red-700 text-white">SOSPESA · ${FOGLIO_A4.ripresaBreve(lesson)}</span>` : ''}
                     <h5 class="font-bold text-[11px] text-slate-800 line-clamp-2 leading-tight ${lesson.sospesa ? 'line-through' : ''}">${escHtml(lesson.title)}</h5>
                     <p class="text-[10px] text-slate-500 mt-1 truncate">${escHtml(lesson.teacher)}</p>
                   </div>
@@ -557,7 +542,7 @@
                 <span class="w-[4.5rem] flex-shrink-0 text-center text-[11px] px-1.5 py-0.5 rounded font-bold ${aulaColorMap[l.aula] || 'bg-slate-700 text-white'}">${l.aula}</span>
                 <span class="min-w-0 flex-grow">
                   <span class="block text-sm font-semibold text-slate-800 leading-tight ${l.sospesa ? 'line-through' : ''}">${escHtml(l.title)}</span>
-                  ${l.sospesa ? `<span class="block text-xs font-bold text-red-700">SOSPESA${l.motivo ? ' · ' + escHtml(l.motivo) : ''}</span>` : ''}
+                  ${l.sospesa ? `<span class="block text-xs font-bold text-red-700">SOSPESA · ${FOGLIO_A4.ripresaBreve(l)}</span>` : ''}
                   <span class="block text-xs text-slate-500 truncate">${escHtml(l.teacher)}</span>
                 </span>
                 <i class="ph-bold ph-caret-right text-slate-400"></i>
@@ -648,7 +633,7 @@
       document.getElementById('modalDescription').parentElement.classList.toggle('hidden', !lesson.description);
       // lezione sospesa: avviso in rosso sopra il titolo
       const avvisoSosp = document.getElementById('modalSospesa');
-      avvisoSosp.textContent = lesson.sospesa ? '⚠ LEZIONE SOSPESA' + (lesson.motivo ? ' · ' + lesson.motivo : '') : '';
+      avvisoSosp.textContent = lesson.sospesa ? '⚠ LEZIONE SOSPESA' + (lesson.motivo ? ' (' + lesson.motivo + ')' : '') + ' · ' + FOGLIO_A4.ripresaLunga(lesson) : '';
       avvisoSosp.classList.toggle('hidden', !lesson.sospesa);
 
       const modal = document.getElementById('lessonModal');
@@ -721,17 +706,13 @@
 
     function buildA4Html() {
       const days = GIORNI.filter(g => lessonsData.some(l => l.day === g));
+      const note = FOGLIO_A4.note(lessonsData, settimana.dal);   // lezioni sospese: "vedi nota n" e note in calce
       const blocks = days.map(day => {
         const lessons = lessonsData.filter(l => l.day === day);   // già ordinate per ora e aula
         const html = `
           <div class="a4-day">
             <div class="a4-dayhead">${day} <span>${dataGiorno(day)}</span></div>
-            ${lessons.map(l => `
-              <div class="a4-row">
-                <div class="a4-time">${l.timeSlot.replace(' - ', ' – ')}</div>
-                <div class="a4-aula" style="background:${a4AulaColors[l.aula] || '#334155'}">${escHtml(l.aula)}</div>
-                <div class="a4-txt"><b style="${l.sospesa ? 'text-decoration:line-through;color:#94a3b8' : ''}">${escHtml(l.title)}</b>${l.sospesa ? `<span style="color:#b91c1c;font-weight:700">SOSPESA${l.motivo ? ' · ' + escHtml(l.motivo) : ''}</span>` : ''}<span>${escHtml(l.teacher)}</span></div>
-              </div>`).join('')}
+            ${lessons.map(l => FOGLIO_A4.riga(l, a4AulaColors[l.aula] || '#334155', note.numero.get(l.id))).join('')}
           </div>`;
         return { html, n: lessons.length };
       });
@@ -757,6 +738,7 @@
           <div>${blocks.slice(0, split).map(b => b.html).join('')}</div>
           <div>${blocks.slice(split).map(b => b.html).join('')}</div>
         </div>
+        ${FOGLIO_A4.blocchiNote(note.testi)}
         <div class="a4-foot">
           <span><b>LUTE Milazzo</b> · Libera Università delle Tre Età</span>
           <span>Aggiornato al ${aggiornatoIl()}</span>
@@ -773,22 +755,13 @@
 
     async function openA4() {
       if (!lessonsData.length) return;
-      await document.fonts.ready;
-      const html = buildA4Html();
-      document.getElementById('a4Preview').innerHTML = html;
-      document.getElementById('a4Capture').innerHTML = html;
-
-      // Sempre una sola pagina: se le lezioni non entrano, riduco il testo quanto basta
-      const capCols = document.querySelector('#a4Capture .a4-cols');
-      const overflows = () => [...capCols.children].some(col => col.lastElementChild &&
-        col.lastElementChild.getBoundingClientRect().bottom > capCols.getBoundingClientRect().bottom + 0.5);
-      let k = 1;
-      capCols.style.setProperty('--k', k);
-      while (overflows() && k > 0.6) {
-        k = Math.round((k - 0.02) * 100) / 100;
-        capCols.style.setProperty('--k', k);
-      }
-      document.querySelector('#a4Preview .a4-cols').style.setProperty('--k', k);
+      await FOGLIO_A4.caratteriPronti();
+      // Sempre una sola pagina e sempre leggibile (vedi FOGLIO_A4.adatta): preparo la copia da fotografare,
+      // poi l'anteprima è identica (stessa grandezza, stessi docenti tolti)
+      const cattura = document.getElementById('a4Capture');
+      cattura.innerHTML = buildA4Html();
+      FOGLIO_A4.adatta(cattura);
+      document.getElementById('a4Preview').innerHTML = cattura.innerHTML;
 
       // "Condividi" solo dove il telefono/browser sa mandare un'immagine ad altre app
       const prova = new File([''], 'prova.jpg', { type: 'image/jpeg' });
@@ -828,9 +801,9 @@
     async function renderA4Canvas() {
       await loadHtml2Canvas();
       await document.fonts.ready;
-      // html2canvas disegna il nome dell'aula troppo in basso nel riquadro colorato: nella copia da fotografare lo alzo di 5px
+      // html2canvas disegna più in basso il testo nei riquadri colorati: nella copia da fotografare lo rialzo
       return html2canvas(document.getElementById('a4Capture'), { scale: 2, backgroundColor: '#ffffff', useCORS: true, logging: false,
-        onclone: doc => doc.querySelectorAll('#a4Capture .a4-aula').forEach(el => { el.innerHTML = '<span style="position:relative;top:-5px">' + el.innerHTML + '</span>'; }) });
+        onclone: doc => FOGLIO_A4.correggiPerFoto(doc.getElementById('a4Capture')) });
     }
 
     async function downloadA4() {
