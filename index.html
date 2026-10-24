@@ -111,6 +111,31 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
+
+    /* ===== Sintesi Settimana: foglio A4 (794x1123 px = A4 a 96 dpi), stesso disegno del Foglio A4 di Gestione Orario ===== */
+    .a4-sheet { width: 794px; height: 1123px; background: #fff; padding: 34px 36px 24px; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; color: #1e293b; display: flex; flex-direction: column; overflow: hidden; }
+    .a4-head { display: flex; align-items: center; gap: 14px; padding-bottom: 14px; border-bottom: 3px solid #f28c38; }
+    .a4-logo { height: 50px; width: auto; flex-shrink: 0; }
+    .a4-title { font-family: 'Playfair Display', serif; font-size: 27px; font-weight: 700; color: #0d2538; line-height: 1.1; }
+    .a4-sub { font-size: 13px; color: #475569; margin-top: 4px; font-weight: 600; }
+    .a4-count { margin-left: auto; text-align: center; background: #0d2538; color: #fff; border-radius: 12px; padding: 6px 14px; font-size: 11px; font-weight: 600; line-height: 1.2; }
+    .a4-count b { display: block; font-size: 24px; font-weight: 800; }
+    .a4-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; flex: 1; min-height: 0; --k: 1; }
+    .a4-day { margin-bottom: calc(12px * var(--k)); }
+    .a4-dayhead { background: #0d2538; color: #fff; font-weight: 800; font-size: calc(13px * var(--k)); letter-spacing: 0.05em; text-transform: uppercase; padding: calc(6px * var(--k)) 10px; border-radius: 8px; display: flex; justify-content: space-between; }
+    .a4-dayhead span { font-weight: 600; letter-spacing: 0; text-transform: none; opacity: 0.8; }
+    .a4-row { display: flex; align-items: center; gap: 8px; padding: calc(6px * var(--k)) 4px; border-bottom: 1px solid #e2e8f0; }
+    .a4-time { width: 88px; flex-shrink: 0; font-weight: 700; font-size: calc(13px * var(--k)); color: #334155; }
+    .a4-aula { width: 68px; flex-shrink: 0; text-align: center; color: #fff; font-weight: 800; font-size: 10.5px; border-radius: 5px; padding: 3px 0; }
+    .a4-txt { min-width: 0; }
+    .a4-txt b { display: block; font-size: calc(14px * var(--k)); line-height: 1.2; color: #0d2538; }
+    .a4-txt span { display: block; font-size: calc(11px * var(--k)); color: #64748b; line-height: 1.3; }
+    .a4-foot { border-top: 1px solid #cbd5e1; padding-top: 8px; font-size: 10.5px; color: #64748b; display: flex; justify-content: space-between; }
+    #a4Overlay { position: fixed; inset: 0; z-index: 48; background: rgba(15,23,42,.8); overflow: auto; padding: 12px; }
+    #a4Toolbar { max-width: 900px; margin: 0 auto 12px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    #a4Toolbar button { font-size: 15px; font-weight: 700; padding: 10px 16px; border-radius: 12px; background: #fff; color: #0d2538; }
+    #a4Toolbar button.primario { background: #0f766e; color: #fff; }
+    #a4Frame { margin: 0 auto; background: #fff; box-shadow: 0 20px 60px rgba(0,0,0,.4); overflow: hidden; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col antialiased selection:bg-teal-500 selection:text-white">
@@ -127,6 +152,10 @@
         <a href="avatar.html" class="no-print inline-flex items-center gap-2 mt-3 px-4 py-2.5 rounded-xl bg-brand-teal hover:bg-brand-navy text-white text-sm sm:text-base font-bold shadow-sm transition">
           🔊 Ascolta l'orario: te lo racconta una guida
         </a>
+        <!-- Tutte le lezioni della settimana in un'immagine A4 (vedi openA4) -->
+        <button onclick="openA4()" class="no-print inline-flex items-center gap-2 mt-3 sm:ml-2 px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-sm sm:text-base font-bold shadow-sm transition">
+          📄 Sintesi Settimana
+        </button>
       </div>
     </div>
 
@@ -307,6 +336,18 @@
       </div>
     </div>
   </div>
+
+  <!-- Sintesi Settimana: anteprima del foglio A4 + Scarica / Condividi -->
+  <div id="a4Overlay" class="hidden" onclick="if (event.target === this) closeA4()">
+    <div id="a4Toolbar">
+      <button class="primario" onclick="downloadA4()">⬇ Scarica immagine</button>
+      <button id="a4Share" class="primario" style="background:#047857" onclick="shareA4()">📤 Condividi (WhatsApp)</button>
+      <button onclick="closeA4()">✕ Chiudi</button>
+    </div>
+    <div id="a4Frame"><div id="a4Preview" class="a4-sheet" style="transform-origin: top left;"></div></div>
+  </div>
+  <!-- Copia a grandezza vera, fuori schermo: è quella che diventa immagine -->
+  <div style="position: fixed; left: -10000px; top: 0;" aria-hidden="true"><div id="a4Capture" class="a4-sheet"></div></div>
 
   <!-- Toast Feedback Notification -->
   <div id="toastNotification" class="fixed bottom-6 right-6 z-50 hidden bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs font-medium border border-slate-700 animate-bounce">
@@ -680,8 +721,145 @@
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeModal();
+      if (e.key === 'Escape') { closeModal(); closeA4(); }
     });
+
+    // ===== Sintesi Settimana: tutte le lezioni in un foglio A4 (immagine da scaricare o mandare su WhatsApp) =====
+    const a4AulaColors = { 'S09': '#0369a1', 'S08': '#7e22ce', 'S07': '#047857', 'S06': '#d97706', 'S05': '#be185d', 'Palestra': '#b91c1c', 'Aula Magna': '#3730a3' };
+    const a4FileName = () => 'LUTE - Orario lezioni ' + periodoLungo().replace(/^dal /, '').replace(' al ', '-') + '.jpg';
+
+    function buildA4Html() {
+      const days = GIORNI.filter(g => lessonsData.some(l => l.day === g));
+      const blocks = days.map(day => {
+        const lessons = lessonsData.filter(l => l.day === day);   // già ordinate per ora e aula
+        const html = `
+          <div class="a4-day">
+            <div class="a4-dayhead">${day} <span>${dataGiorno(day)}</span></div>
+            ${lessons.map(l => `
+              <div class="a4-row">
+                <div class="a4-time">${l.timeSlot.replace(' - ', ' – ')}</div>
+                <div class="a4-aula" style="background:${a4AulaColors[l.aula] || '#334155'}">${escHtml(l.aula)}</div>
+                <div class="a4-txt"><b style="${l.sospesa ? 'text-decoration:line-through;color:#94a3b8' : ''}">${escHtml(l.title)}</b>${l.sospesa ? `<span style="color:#b91c1c;font-weight:700">SOSPESA${l.motivo ? ' · ' + escHtml(l.motivo) : ''}</span>` : ''}<span>${escHtml(l.teacher)}</span></div>
+              </div>`).join('')}
+          </div>`;
+        return { html, n: lessons.length };
+      });
+
+      // Divido i giorni in due colonne con circa lo stesso numero di lezioni
+      const half = lessonsData.length / 2;
+      let left = 0, split = 0;
+      while (split < blocks.length && Math.abs(left + blocks[split].n - half) < Math.abs(left - half)) {
+        left += blocks[split].n;
+        split++;
+      }
+
+      return `
+        <div class="a4-head">
+          <img class="a4-logo" src="images/logo-lute.png" alt="LUTE">
+          <div>
+            <div class="a4-title">LUTE · Orario delle Lezioni</div>
+            <div class="a4-sub">Settimana ${periodoLungo()} · Anno Accademico 2026/27</div>
+          </div>
+          <div class="a4-count"><b>${lessonsData.filter(l => !l.sospesa).length}</b>lezioni</div>
+        </div>
+        <div class="a4-cols">
+          <div>${blocks.slice(0, split).map(b => b.html).join('')}</div>
+          <div>${blocks.slice(split).map(b => b.html).join('')}</div>
+        </div>
+        <div class="a4-foot">
+          <span><b>LUTE Milazzo</b> · Libera Università delle Tre Età</span>
+          <span>Aggiornato al ${aggiornatoIl()}</span>
+        </div>`;
+    }
+
+    function fitA4Preview() {
+      const s = Math.min(1, (window.innerHeight - 110) / 1123, (window.innerWidth - 24) / 794);
+      document.getElementById('a4Preview').style.transform = `scale(${s})`;
+      const frame = document.getElementById('a4Frame');
+      frame.style.width = (794 * s) + 'px';
+      frame.style.height = (1123 * s) + 'px';
+    }
+
+    async function openA4() {
+      if (!lessonsData.length) return;
+      await document.fonts.ready;
+      const html = buildA4Html();
+      document.getElementById('a4Preview').innerHTML = html;
+      document.getElementById('a4Capture').innerHTML = html;
+
+      // Sempre una sola pagina: se le lezioni non entrano, riduco il testo quanto basta
+      const capCols = document.querySelector('#a4Capture .a4-cols');
+      const overflows = () => [...capCols.children].some(col => col.lastElementChild &&
+        col.lastElementChild.getBoundingClientRect().bottom > capCols.getBoundingClientRect().bottom + 0.5);
+      let k = 1;
+      capCols.style.setProperty('--k', k);
+      while (overflows() && k > 0.6) {
+        k = Math.round((k - 0.02) * 100) / 100;
+        capCols.style.setProperty('--k', k);
+      }
+      document.querySelector('#a4Preview .a4-cols').style.setProperty('--k', k);
+
+      // "Condividi" solo dove il telefono/browser sa mandare un'immagine ad altre app
+      const prova = new File([''], 'prova.jpg', { type: 'image/jpeg' });
+      document.getElementById('a4Share').classList.toggle('hidden', !(navigator.canShare && navigator.canShare({ files: [prova] })));
+
+      document.getElementById('a4Overlay').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      fitA4Preview();
+    }
+
+    function closeA4() {
+      document.getElementById('a4Overlay').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    window.addEventListener('resize', () => {
+      if (!document.getElementById('a4Overlay').classList.contains('hidden')) fitA4Preview();
+    });
+
+    // html2canvas si carica solo la prima volta che serve
+    function loadHtml2Canvas() {
+      if (window.html2canvas) return Promise.resolve();
+      return new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+        s.onload = resolve;
+        s.onerror = () => reject(new Error('html2canvas'));
+        document.head.appendChild(s);
+      });
+    }
+
+    async function renderA4Canvas() {
+      showToast('Preparo l\'immagine…');
+      await loadHtml2Canvas();
+      await document.fonts.ready;
+      return html2canvas(document.getElementById('a4Capture'), { scale: 2, backgroundColor: '#ffffff', useCORS: true, logging: false });
+    }
+
+    async function downloadA4() {
+      try {
+        const canvas = await renderA4Canvas();
+        const a = document.createElement('a');
+        a.href = canvas.toDataURL('image/jpeg', 0.92);
+        a.download = a4FileName();
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        showToast('Immagine salvata nei Download');
+      } catch (err) {
+        showToast('Impossibile creare l\'immagine. Controlla la connessione.');
+      }
+    }
+
+    async function shareA4() {
+      try {
+        const canvas = await renderA4Canvas();
+        const blob = await new Promise(r => canvas.toBlob(r, 'image/jpeg', 0.92));
+        await navigator.share({ files: [new File([blob], a4FileName(), { type: 'image/jpeg' })], title: 'Orario LUTE' });
+      } catch (err) {
+        if (err && err.name !== 'AbortError') showToast('Condivisione non riuscita: usa "Scarica immagine"');
+      }
+    }
 
     // ===== Dati della settimana (dati/settimana.json, scritto dal programma "Gestione Orario") =====
     const GIORNI = ['LUNEDÌ', 'MARTEDÌ', 'MERCOLEDÌ', 'GIOVEDÌ', 'VENERDÌ'];
