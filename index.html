@@ -726,7 +726,9 @@
 
     // ===== Sintesi Settimana: tutte le lezioni in un foglio A4 (immagine da scaricare o mandare su WhatsApp) =====
     const a4AulaColors = { 'S09': '#0369a1', 'S08': '#7e22ce', 'S07': '#047857', 'S06': '#d97706', 'S05': '#be185d', 'Palestra': '#b91c1c', 'Aula Magna': '#3730a3' };
-    const a4FileName = () => 'LUTE - Orario lezioni ' + periodoLungo().replace(/^dal /, '').replace(' al ', '-') + '.jpg';
+    // nome semplice (senza spazi): alcune app, WhatsApp compresa, gestiscono male i file con nomi strani
+    const a4FileName = () => 'LUTE-orario-' + periodoLungo().replace(/^dal /, '').replace(/ al | /g, '-') + '.jpg';
+    let a4Pronta = null;   // Promise { blob }: l'immagine si prepara appena si apre l'anteprima
 
     function buildA4Html() {
       const days = GIORNI.filter(g => lessonsData.some(l => l.day === g));
@@ -806,6 +808,11 @@
       document.getElementById('a4Overlay').classList.remove('hidden');
       document.body.style.overflow = 'hidden';
       fitA4Preview();
+
+      // La preparo subito: il telefono lascia condividere solo se la condivisione parte
+      // appena dopo il tocco, e html2canvas impiega qualche secondo
+      a4Pronta = renderA4Canvas().then(canvas => new Promise(r => canvas.toBlob(blob => r({ blob }), 'image/jpeg', 0.92)));
+      a4Pronta.catch(() => {});
     }
 
     function closeA4() {
@@ -830,7 +837,6 @@
     }
 
     async function renderA4Canvas() {
-      showToast('Preparo l\'immagine…');
       await loadHtml2Canvas();
       await document.fonts.ready;
       // html2canvas disegna il nome dell'aula troppo in basso nel riquadro colorato: nella copia da fotografare lo alzo di 5px
@@ -840,13 +846,15 @@
 
     async function downloadA4() {
       try {
-        const canvas = await renderA4Canvas();
+        showToast('Preparo l\'immagine…');
+        const { blob } = await a4Pronta;
         const a = document.createElement('a');
-        a.href = canvas.toDataURL('image/jpeg', 0.92);
+        a.href = URL.createObjectURL(blob);
         a.download = a4FileName();
         document.body.appendChild(a);
         a.click();
         a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 10000);
         showToast('Immagine salvata nei Download');
       } catch (err) {
         showToast('Impossibile creare l\'immagine. Controlla la connessione.');
@@ -855,9 +863,9 @@
 
     async function shareA4() {
       try {
-        const canvas = await renderA4Canvas();
-        const blob = await new Promise(r => canvas.toBlob(r, 'image/jpeg', 0.92));
-        await navigator.share({ files: [new File([blob], a4FileName(), { type: 'image/jpeg' })], title: 'Orario LUTE' });
+        const { blob } = await a4Pronta;
+        // solo il file, senza titolo né testo: con un testo insieme WhatsApp a volte manda solo quello e perde l'immagine
+        await navigator.share({ files: [new File([blob], a4FileName(), { type: 'image/jpeg' })] });
       } catch (err) {
         if (err && err.name !== 'AbortError') showToast('Condivisione non riuscita: usa "Scarica immagine"');
       }
