@@ -126,7 +126,7 @@
     .a4-dayhead span { font-weight: 600; letter-spacing: 0; text-transform: none; opacity: 0.8; }
     .a4-row { display: flex; align-items: center; gap: 8px; padding: calc(6px * var(--k)) 4px; border-bottom: 1px solid #e2e8f0; }
     .a4-time { width: 88px; flex-shrink: 0; font-weight: 700; font-size: calc(13px * var(--k)); color: #334155; }
-    .a4-aula { width: 68px; flex-shrink: 0; text-align: center; color: #fff; font-weight: 800; font-size: 10.5px; border-radius: 5px; padding: 3px 0; }
+    .a4-aula { width: 68px; height: 20px; line-height: 20px; flex-shrink: 0; text-align: center; color: #fff; font-weight: 800; font-size: 10.5px; border-radius: 5px; padding: 0; }
     .a4-txt { min-width: 0; }
     .a4-txt b { display: block; font-size: calc(14px * var(--k)); line-height: 1.2; color: #0d2538; }
     .a4-txt span { display: block; font-size: calc(11px * var(--k)); color: #64748b; line-height: 1.3; }
@@ -833,7 +833,9 @@
       showToast('Preparo l\'immagine…');
       await loadHtml2Canvas();
       await document.fonts.ready;
-      return html2canvas(document.getElementById('a4Capture'), { scale: 2, backgroundColor: '#ffffff', useCORS: true, logging: false });
+      // html2canvas disegna il nome dell'aula troppo in basso nel riquadro colorato: nella copia da fotografare lo alzo di 5px
+      return html2canvas(document.getElementById('a4Capture'), { scale: 2, backgroundColor: '#ffffff', useCORS: true, logging: false,
+        onclone: doc => doc.querySelectorAll('#a4Capture .a4-aula').forEach(el => { el.innerHTML = '<span style="position:relative;top:-5px">' + el.innerHTML + '</span>'; }) });
     }
 
     async function downloadA4() {
