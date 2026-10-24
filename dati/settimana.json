@@ -1,8 +1,9 @@
 {
- "dal": "2026-10-12",
- "al": "2026-10-16",
- "aggiornato": "2026-10-10",
- "pubblicato": "2026-10-12T12:51:04.000Z",
+ "dal": "2026-10-26",
+ "al": "2026-10-30",
+ "aggiornato": "2026-10-24",
+ "pubblicato": "2026-10-24T12:13:54.000Z",
+ "versioneImmagini": 1,
  "lezioni": [
   {
    "id": "LUN-mv593b0b",
@@ -49,7 +50,7 @@
    "startTime": "16:30",
    "endTime": "18:30",
    "aula": "S09",
-   "title": "Vi racconto un film.....",
+   "title": "Vi racconto un film… \"The Dead - Gente di Dublino\"",
    "teacher": "ISGRO' A.N.",
    "category": "Cinema & Cultura",
    "categoryColor": "bg-sky-600",
@@ -226,6 +227,19 @@
    "description": "Primi passi con il computer: gestione delle cartelle, navigazione sicura sul web, utilizzo della posta elettronica e introduzione agli strumenti d'ufficio."
   },
   {
+   "id": "MAR-9",
+   "day": "MARTEDÌ",
+   "startTime": "17:30",
+   "endTime": "18:30",
+   "aula": "S06",
+   "title": "English Communication",
+   "teacher": "PITRONE G.",
+   "category": "Lingue Straniere",
+   "categoryColor": "bg-blue-600",
+   "cod": "720",
+   "description": ""
+  },
+  {
    "id": "MAR-8",
    "day": "MARTEDÌ",
    "startTime": "18:30",
@@ -256,7 +270,7 @@
    "day": "MERCOLEDÌ",
    "startTime": "15:30",
    "endTime": "16:30",
-   "aula": "S07",
+   "aula": "S06",
    "title": "Smartphone Android",
    "teacher": "FORESTIERI V.",
    "category": "Tecnologia & Digitale",
@@ -265,17 +279,30 @@
    "description": "Imparare a padroneggiare lo smartphone Android: impostazioni, WhatsApp, SPID, prenotazioni online e salvataggio foto in cloud."
   },
   {
-   "id": "MER-2",
+   "id": "MER-11",
    "day": "MERCOLEDÌ",
    "startTime": "15:30",
-   "endTime": "17:30",
-   "aula": "S08",
-   "title": "Fotografia",
-   "teacher": "LA CARA F. - RIGGI V.",
-   "category": "Arti Visive",
-   "categoryColor": "bg-amber-600",
-   "cod": "110",
-   "description": "Composizione fotografica, padronanza della luce, tempi di scatto e diaframma. Uscite didattiche ed elaborazione visiva di scatti urbani e ritratti."
+   "endTime": "16:30",
+   "aula": "S07",
+   "title": "Spagnolo Base",
+   "teacher": "SALVUCCI I.",
+   "category": "Lingue Straniere",
+   "categoryColor": "bg-blue-600",
+   "cod": "700",
+   "description": ""
+  },
+  {
+   "id": "MER-10",
+   "day": "MERCOLEDÌ",
+   "startTime": "15:30",
+   "endTime": "16:30",
+   "aula": "S09",
+   "title": "Storia della musica afroamericana",
+   "teacher": "FRANZINI F.",
+   "category": "Musica & Cultura",
+   "categoryColor": "bg-violet-600",
+   "cod": "050",
+   "description": ""
   },
   {
    "id": "MER-6",
@@ -330,6 +357,19 @@
    "description": "Dizione, espressività corporea e valorizzazione del patrimonio dialettale e letterario della commedia e poesia siciliana."
   },
   {
+   "id": "MER-2",
+   "day": "MERCOLEDÌ",
+   "startTime": "16:30",
+   "endTime": "18:30",
+   "aula": "S08",
+   "title": "Fotografia",
+   "teacher": "LA CARA F. - RIGGI V.",
+   "category": "Arti Visive",
+   "categoryColor": "bg-amber-600",
+   "cod": "110",
+   "description": "Composizione fotografica, padronanza della luce, tempi di scatto e diaframma. Uscite didattiche ed elaborazione visiva di scatti urbani e ritratti."
+  },
+  {
    "id": "MER-8",
    "day": "MERCOLEDÌ",
    "startTime": "17:30",
@@ -343,17 +383,17 @@
    "description": "Sessione pomeridiana intermedia di balli di gruppo: passi sincronizzati e sequenze musicali per mantenersi sempre in forma e divertirsi."
   },
   {
-   "id": "MER-7",
+   "id": "MER-12",
    "day": "MERCOLEDÌ",
    "startTime": "17:30",
    "endTime": "18:30",
    "aula": "S09",
-   "title": "Storia della Sicilia dal 700 ad oggi",
-   "teacher": "MILAZZO F.",
-   "category": "Storia & Territorio",
-   "categoryColor": "bg-blue-700",
-   "cod": "410",
-   "description": "Dalle riforme illuministe borboniche al Risorgimento, fino alle grandi trasformazioni sociali ed economiche dell'età contemporanea in Sicilia."
+   "title": "Musica ed Emozioni",
+   "teacher": "SCHEPIS N.",
+   "category": "Musica & Voce",
+   "categoryColor": "bg-violet-600",
+   "cod": "060",
+   "description": ""
   },
   {
    "id": "MER-9",
@@ -460,9 +500,22 @@
    "description": "Conferenza plenaria aperta a tutti gli iscritti: percorso storico e culturale tra arte, letteratura e cronache del Novecento con interventi e testimonianze."
   },
   {
-   "id": "VEN-2",
+   "id": "VEN-4",
    "day": "VENERDÌ",
    "startTime": "16:30",
+   "endTime": "17:30",
+   "aula": "Palestra",
+   "title": "Postura e benessere",
+   "teacher": "RAGONA L.",
+   "category": "Benessere & Salute",
+   "categoryColor": "bg-teal-600",
+   "cod": "225",
+   "description": ""
+  },
+  {
+   "id": "VEN-2",
+   "day": "VENERDÌ",
+   "startTime": "17:30",
    "endTime": "18:30",
    "aula": "Palestra",
    "title": "Tarantella e balli sociali",
@@ -485,6 +538,5 @@
    "cod": "240",
    "description": "Pratica yoga per il rilassamento del corpo e della mente. Asana dolci, respirazione pranayama e distensione finale per chiudere con serenità la settimana accademica."
   }
- ],
- "versioneImmagini": 1
+ ]
 }
