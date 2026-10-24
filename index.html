@@ -115,49 +115,11 @@
 </head>
 <body class="min-h-screen flex flex-col antialiased selection:bg-teal-500 selection:text-white">
 
-  <header class="sticky top-0 z-40 glass-header border-b border-slate-200/80 transition-all duration-200 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        
-        <!-- Logo and University Title -->
-        <div class="flex items-center space-x-3.5">
-          <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-teal to-brand-sage flex items-center justify-center text-white shadow-md shadow-brand-teal/20">
-            <i class="ph-bold ph-graduation-cap text-2xl"></i>
-          </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-xl sm:text-2xl font-black tracking-tight text-brand-navy">LUTE</span>
-              <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-semibold border border-emerald-200">Anno Accademico 2026/27</span>
-            </div>
-            <p class="text-xs text-slate-500 hidden sm:block">Libera Università delle Tre Età • Orario Didattico</p>
-          </div>
-        </div>
-
-        <!-- Weekly Badge & Utility Actions -->
-        <div class="flex items-center space-x-2 sm:space-x-4">
-          <div class="hidden md:flex flex-col text-right">
-            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Periodo</span>
-            <span class="text-sm font-bold text-slate-700 w-periodo"></span>
-          </div>
-
-          <!-- Print / Export Button -->
-          <button onclick="window.print()" class="no-print inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl shadow-xs transition hover:border-slate-300" title="Stampa o Salva PDF">
-            <i class="ph-bold ph-printer text-base text-slate-500"></i>
-            <span class="hidden sm:inline">Stampa / PDF</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
-
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
     
     <!-- Hero / Headline -->
     <div class="mb-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
       <div>
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200 mb-2">
-          <i class="ph-fill ph-calendar-check text-amber-500"></i> Aggiornato al <span class="w-aggiornato"></span>
-        </span>
         <h1 class="font-serif-title text-2xl sm:text-4xl font-bold text-brand-navy tracking-tight">
           Galleria Lezioni della Settimana
         </h1>
@@ -168,18 +130,6 @@
         <a href="avatar.html" class="no-print inline-flex items-center gap-2 mt-3 px-4 py-2.5 rounded-xl bg-brand-teal hover:bg-brand-navy text-white text-sm sm:text-base font-bold shadow-sm transition">
           🔊 Ascolta l'orario: te lo racconta una guida
         </a>
-      </div>
-
-      <!-- View Switcher (Cards vs Schedule Matrix) -->
-      <div class="flex items-center bg-slate-200/80 p-1 rounded-xl self-start md:self-auto border border-slate-300/60 no-print">
-        <button id="viewGridBtn" onclick="switchView('grid')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 bg-white text-brand-navy shadow-sm">
-          <i class="ph-bold ph-squares-four text-sm"></i>
-          <span>Galleria Card</span>
-        </button>
-        <button id="viewTableBtn" onclick="switchView('table')" class="px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 text-slate-600 hover:text-brand-navy">
-          <i class="ph-bold ph-table text-sm"></i>
-          <span>Tabella Orario</span>
-        </button>
       </div>
     </div>
 
@@ -646,31 +596,6 @@
       clearSearchInput();
       selectDay('TUTTI');
       filterByAula('ALL');
-    }
-
-    function switchView(view) {
-      const gallery = document.getElementById('galleryView');
-      const table = document.getElementById('tableView');
-      const gridBtn = document.getElementById('viewGridBtn');
-      const tableBtn = document.getElementById('viewTableBtn');
-
-      // I filtri valgono solo per la galleria: in tabella li nascondo per non confondere
-      ['filtersBox', 'resultsCount'].forEach(id => document.getElementById(id).classList.toggle('hidden', view !== 'grid'));
-      if (view !== 'grid') document.getElementById('emptyState').classList.add('hidden');
-      else renderGallery();
-
-      if (view === 'grid') {
-        gallery.classList.remove('hidden');
-        table.classList.add('hidden');
-        gridBtn.className = 'px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 bg-white text-brand-navy shadow-sm';
-        tableBtn.className = 'px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 text-slate-600 hover:text-brand-navy';
-      } else {
-        gallery.classList.add('hidden');
-        table.classList.remove('hidden');
-        tableBtn.className = 'px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 bg-white text-brand-navy shadow-sm';
-        gridBtn.className = 'px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 text-slate-600 hover:text-brand-navy';
-        renderTableView();
-      }
     }
 
     // Modal Control
