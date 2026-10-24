@@ -354,6 +354,24 @@
     lettore.preload = 'auto';
     let paroleAttuali = null;      // [[inizio, fine] in millisecondi] delle parole della frase che sta suonando
 
+    // Le frasi si scaricano in memoria appena si apre un giorno (poi gli altri giorni, in sottofondo): sul telefono
+    // scaricarle una per volta mentre la guida parla faceva pause lunghe tra una frase e l'altra (il lunedì no,
+    // perché il telefono l'aveva già in memoria dalle volte prima). Una alla volta, nell'ordine in cui si diranno.
+    const inMemoria = new Map();   // file → indirizzo blob: della registrazione già scaricata
+    const inArrivo = new Map();    // file → Promise
+    function scarica(file) {
+      if (!registrate[file]) return Promise.resolve();
+      if (!inArrivo.has(file)) inArrivo.set(file, fetch('audio/' + file).then(r => r.ok ? r.blob() : null)
+        .then(b => { if (b) inMemoria.set(file, URL.createObjectURL(b)); }).catch(() => {}));
+      return inArrivo.get(file);
+    }
+    let codaDownload = Promise.resolve();
+    function scaricaInOrdine(files) {
+      codaDownload = codaDownload.then(async () => { for (const f of files) await scarica(f); });
+      return codaDownload;
+    }
+    const fileDelGiorno = (giorno, saluto) => RACCONTO.battute(settimana, corsi, giorno, saluto).map(b => RACCONTO.fileAudio(giorno, b.parlato));
+
     // ---------- bocca e occhi ----------
     const bocca = { el: null, a: 0, obiettivo: 0, attiva: false, prossimo: 0 };
     function muoviBocca(on) {
@@ -425,7 +443,10 @@
       paroleAttuali = parole;
       lettore.onended = fatto;
       lettore.onerror = ripiego;
-      lettore.src = 'audio/' + b.file;
+      // alcune voci lasciano quasi un secondo di silenzio in fondo: si passa avanti poco dopo l'ultima parola
+      const ultima = parole.length ? parole[parole.length - 1][1] + 300 : Infinity;
+      lettore.ontimeupdate = () => { if (turno === stato.turno && lettore.currentTime * 1000 > ultima) fatto(); };
+      lettore.src = inMemoria.get(b.file) || 'audio/' + b.file;   // già in memoria se possibile, altrimenti da internet
       stato.guardia = setTimeout(fatto, Math.max(12000, b.parlato.length * 170));
       muoviBocca(true);
       const p = lettore.play();
@@ -471,12 +492,12 @@
       evidenzia(b.lezione);
       parla(b, () => {
         const turno = stato.turno;
-        if (i < stato.battute.length - 1) setTimeout(() => { if (turno === stato.turno && !stato.pausa) dici(i + 1); }, 600);
+        if (i < stato.battute.length - 1) setTimeout(() => { if (turno === stato.turno && !stato.pausa) dici(i + 1); }, 400);
         else { stato.pausa = true; aggiornaComandi(); }
       });
-      // la frase dopo (voce e immagine) arriva già pronta
+      // la frase dopo (voce e immagine) arriva già pronta: se non è ancora in memoria la chiedo subito, prima delle altre
       const dopo = stato.battute[i + 1];
-      if (dopo && registrate[dopo.file]) fetch('audio/' + dopo.file).catch(() => {});
+      if (dopo) scarica(dopo.file);
       if (dopo && dopo.lezione) new Image().src = `images/corsi/${encodeURIComponent(dopo.lezione.cod)}.jpg?v=${settimana.versioneImmagini || 1}`;
     }
 
@@ -549,6 +570,12 @@
       stato.giorno = giorno;
       stato.battute = RACCONTO.battute(settimana, corsi, giorno, saluto);
       stato.battute.forEach(b => b.file = RACCONTO.fileAudio(giorno, b.parlato));
+      // tutte le frasi di questo giorno in memoria, poi quelle degli altri giorni (chi ascolta di solito va avanti)
+      scaricaInOrdine(stato.battute.map(b => b.file)).then(() => {
+        const altri = GIORNI.slice(GIORNI.indexOf(giorno) + 1).concat(GIORNI.slice(0, GIORNI.indexOf(giorno)))
+          .filter(x => lezioni.some(l => l.day === x));
+        return scaricaInOrdine(altri.flatMap(x => fileDelGiorno(x, saluto)));
+      });
       document.documentElement.style.setProperty('--colore', g.colore);
       document.documentElement.style.setProperty('--chiaro', g.chiaro);
       $('titoloGiorno').textContent = `${nomeGiorno(giorno)} ${dataBreve(giorno)}${eOggi(giorno) ? ' · oggi' : ''}`;
