@@ -724,8 +724,17 @@
       return `${d}-${m}-${y}`;
     }
 
+    // All'apertura: il giorno di oggi (sabato e domenica → lunedì). Se quel giorno non ha lezioni,
+    // il primo giorno successivo che ne ha; se non ce n'è nessuno, tutta la settimana.
+    function giornoDiOggi(giorni) {
+      const g = new Date().getDay();   // 0 = domenica … 6 = sabato
+      const da = (g === 0 || g === 6) ? 0 : g - 1;
+      return GIORNI.slice(da).find(x => giorni.includes(x)) || 'TUTTI';
+    }
+
     function creaPulsantiGiorni() {
       const giorni = GIORNI.filter(g => lessonsData.some(l => l.day === g));
+      currentDayFilter = giornoDiOggi(giorni);
       document.getElementById('dayTabs').innerHTML =
         `<button onclick="selectDay('TUTTI')" data-day="TUTTI" class="day-tab col-span-2">Tutta la Settimana (${lessonsData.length})</button>` +
         giorni.map(g => `<button onclick="selectDay('${g}')" data-day="${g}" class="day-tab">
