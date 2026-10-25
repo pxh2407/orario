@@ -3,7 +3,7 @@
 import re
 from PIL import Image, ImageDraw, ImageFont
 
-CART = r"C:\Users\Filippo\Desktop\CLAUDE\GALLERIA LEZIONI LUTE"
+CART = r"C:\Users\Filippo\Desktop\CLAUDE\ORARIO LUTE"
 F = r"C:\Windows\Fonts"
 W, H = 1200, 630
 NAVY, TEAL, AMBER, SAND = (13, 37, 56), (26, 95, 122), (242, 140, 56), (248, 246, 240)
