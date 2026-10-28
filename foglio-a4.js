@@ -162,7 +162,8 @@ const FOGLIO_A4 = (() => {
   // html2canvas mette il testo più in basso del browser: nella copia da fotografare (onclone) lo rialzo
   function correggiPerFoto(doc) {
     doc.querySelectorAll('.a4-aula').forEach(el => { el.innerHTML = '<span style="position:relative;top:-5px">' + el.innerHTML + '</span>'; });
-    doc.querySelectorAll('.a4-barrato').forEach(el => { el.style.top = '-5px'; el.firstElementChild.style.top = 'calc(52% + 5px)'; });
+    doc.querySelectorAll('.a4-time, .a4-txt').forEach(el => { el.style.position = 'relative'; el.style.top = '-6px'; });
+    doc.querySelectorAll('.a4-barrato i').forEach(el => { el.style.top = 'calc(52% + 6px)'; });
     doc.querySelectorAll('.a4-dayhead').forEach(el => { el.innerHTML = '<span style="position:relative;top:-6px;opacity:1">' + el.innerHTML + '</span>'; el.firstChild.style.cssText += ';display:flex;justify-content:space-between;width:100%;letter-spacing:inherit;text-transform:inherit;font-weight:inherit'; });
   }
 
