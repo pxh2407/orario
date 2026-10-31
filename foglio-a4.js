@@ -61,18 +61,12 @@ const FOGLIO_A4 = (() => {
   }
 
   // ---------- pezzi del foglio ----------
-  // colori: le aule tutte dello stesso colore; l'orario colorato secondo l'ora d'inizio (stessa ora = stesso colore)
-  const COLORE_AULA = '#475569';
-  const COLORI_ORA = { '09': '#0f766e', '10': '#0e7490', '11': '#4d7c0f', '15': '#047857', '16': '#0369a1',
-                       '17': '#7e22ce', '18': '#c2410c', '19': '#be185d' };
-  const coloreOra = inizio => COLORI_ORA[String(inizio).slice(0, 2)] || '#334155';
-
   // riga di una lezione: ora, aula, titolo; sotto il docente (si può togliere se manca spazio) e, se sospesa, "vedi nota n"
-  function riga(l, nNota) {
+  function riga(l, colore, nNota) {
     return `
       <div class="a4-row${l.sospesa ? ' a4-sospesa' : ''}">
-        <div class="a4-time" style="background:${coloreOra(l.startTime)}">${l.startTime} – ${l.endTime}</div>
-        <div class="a4-aula" style="background:${COLORE_AULA}">${esc(l.aula)}</div>
+        <div class="a4-time">${l.startTime} – ${l.endTime}</div>
+        <div class="a4-aula" style="background:${colore}">${esc(l.aula)}</div>
         <div class="a4-txt"><b>${l.sospesa ? `<em class="a4-barrato">${esc(l.title)}<i></i></em>` : esc(l.title)}</b>${l.teacher ? `<span class="a4-doc">${esc(l.teacher)}</span>` : ''}${l.sospesa ? `<span class="a4-vedi">vedi nota ${nNota}</span>` : ''}</div>
       </div>`;
   }
@@ -120,7 +114,7 @@ const FOGLIO_A4 = (() => {
     .a4-dayhead { background: #0d2538; color: #fff; font-weight: 700; font-size: calc(14px * var(--k)); letter-spacing: 0.05em; text-transform: uppercase; padding: calc(5px * var(--k)) 10px; border-radius: 8px; display: flex; justify-content: space-between; }
     .a4-dayhead span { letter-spacing: 0; text-transform: none; opacity: 0.85; }
     .a4-row { display: flex; align-items: center; gap: 8px; padding: calc(5px * var(--k)) 4px; border-bottom: 1px solid #e2e8f0; }
-    .a4-time { width: calc(96px * var(--k)); flex-shrink: 0; font-weight: 700; font-size: calc(13px * var(--k)); color: #fff; text-align: center; border-radius: 5px; padding: 1px 0; }
+    .a4-time { width: calc(96px * var(--k)); flex-shrink: 0; font-weight: 700; font-size: calc(14px * var(--k)); color: #1e293b; }
     .a4-aula { width: 64px; height: 20px; line-height: 20px; flex-shrink: 0; text-align: center; color: #fff; font-weight: 700; font-size: 11.5px; border-radius: 5px; padding: 0; }
     .a4-txt { min-width: 0; }
     .a4-txt b { display: block; font-size: calc(16px * var(--k)); line-height: 1.2; color: #0d2538; }
@@ -129,8 +123,7 @@ const FOGLIO_A4 = (() => {
     .a4-doc.a4-via { display: none !important; }
     .a4-vedi { color: #991b1b; font-weight: 700; }
     .a4-sospesa { background: #f1f5f9; }
-    .a4-sospesa .a4-txt b { color: #64748b; }
-    .a4-sospesa .a4-time { opacity: 0.55; }
+    .a4-sospesa .a4-time, .a4-sospesa .a4-txt b { color: #64748b; }
     /* barrato disegnato con una linea vera: html2canvas metterebbe la riga di text-decoration sopra il testo */
     .a4-barrato { position: relative; display: inline-block; font-style: normal; }
     .a4-barrato i { position: absolute; left: -2px; right: -2px; top: 52%; height: 2px; background: #991b1b; }
@@ -168,8 +161,8 @@ const FOGLIO_A4 = (() => {
 
   // html2canvas mette il testo più in basso del browser: nella copia da fotografare (onclone) lo rialzo
   function correggiPerFoto(doc) {
-    doc.querySelectorAll('.a4-aula, .a4-time').forEach(el => { el.innerHTML = '<span style="position:relative;top:-5px">' + el.innerHTML + '</span>'; });
-    doc.querySelectorAll('.a4-txt').forEach(el => { el.style.position = 'relative'; el.style.top = '-6px'; });
+    doc.querySelectorAll('.a4-aula').forEach(el => { el.innerHTML = '<span style="position:relative;top:-5px">' + el.innerHTML + '</span>'; });
+    doc.querySelectorAll('.a4-time, .a4-txt').forEach(el => { el.style.position = 'relative'; el.style.top = '-6px'; });
     doc.querySelectorAll('.a4-barrato i').forEach(el => { el.style.top = 'calc(52% + 6px)'; });
     doc.querySelectorAll('.a4-dayhead').forEach(el => { el.innerHTML = '<span style="position:relative;top:-6px;opacity:1">' + el.innerHTML + '</span>'; el.firstChild.style.cssText += ';display:flex;justify-content:space-between;width:100%;letter-spacing:inherit;text-transform:inherit;font-weight:inherit'; });
   }

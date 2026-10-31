@@ -17,7 +17,7 @@
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
   <!-- Foglio A4 e testi delle lezioni sospese (in comune con Gestione Orario) -->
-  <script src="foglio-a4.js?v=2"></script>
+  <script src="foglio-a4.js?v=3"></script>
 
   <script>
     tailwind.config = {
@@ -699,6 +699,7 @@
     });
 
     // ===== Sintesi Settimana: tutte le lezioni in un foglio A4 (immagine da scaricare o mandare su WhatsApp) =====
+    const a4AulaColors = { 'S09': '#0369a1', 'S08': '#7e22ce', 'S07': '#047857', 'S06': '#d97706', 'S05': '#be185d', 'Palestra': '#b91c1c', 'Aula Magna': '#3730a3' };
     // nome semplice (senza spazi): alcune app, WhatsApp compresa, gestiscono male i file con nomi strani
     const a4FileName = () => 'LUTE-orario-' + periodoLungo().replace(/^dal /, '').replace(/ al | /g, '-') + '.jpg';
     let a4Pronta = null;   // Promise { blob }: l'immagine si prepara appena si apre l'anteprima
@@ -711,7 +712,7 @@
         const html = `
           <div class="a4-day">
             <div class="a4-dayhead">${day} <span>${dataGiorno(day)}</span></div>
-            ${lessons.map(l => FOGLIO_A4.riga(l, note.numero.get(l.id))).join('')}
+            ${lessons.map(l => FOGLIO_A4.riga(l, a4AulaColors[l.aula] || '#334155', note.numero.get(l.id))).join('')}
           </div>`;
         return { html, n: lessons.length };
       });
