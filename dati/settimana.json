@@ -2,7 +2,7 @@
  "dal": "2026-11-02",
  "al": "2026-11-06",
  "aggiornato": "2026-10-31",
- "pubblicato": "2026-10-31T10:28:07.196Z",
+ "pubblicato": "2026-10-31T10:53:35.721Z",
  "versioneImmagini": 1,
  "lezioni": [
   {
@@ -17,7 +17,8 @@
    "categoryColor": "bg-amber-600",
    "cod": "505",
    "description": "",
-   "sospesa": true
+   "sospesa": true,
+   "riprende": "2026-11-09"
   },
   {
    "id": "LUN-1",
@@ -31,7 +32,8 @@
    "categoryColor": "bg-emerald-500",
    "cod": "130",
    "description": "Laboratorio artistico pratico dedicato alla pittura, all'esplorazione del colore su tela e all'acquerello. Cavalletti, tavolozze e colori ad olio e acrilico forniti per la libera espressione espressiva.",
-   "sospesa": true
+   "sospesa": true,
+   "riprende": "2026-11-09"
   },
   {
    "id": "LUN-3",
@@ -45,7 +47,8 @@
    "categoryColor": "bg-amber-600",
    "cod": "550",
    "description": "Creazione artigianale di accessori e monili unici riutilizzando tessuti pregiati, perle in legno, cordoncini e passamaneria con tecniche di ricamo e montaggio a mano.",
-   "sospesa": true
+   "sospesa": true,
+   "riprende": "2026-11-09"
   },
   {
    "id": "LUN-2",
@@ -59,7 +62,8 @@
    "categoryColor": "bg-sky-600",
    "cod": "020",
    "description": "Analisi cinematografica, scomposizione visiva e approfondimento critico di pellicole storiche con visioni guidate di sequenze chiave e dibattito culturale in aula.",
-   "sospesa": true
+   "sospesa": true,
+   "riprende": "2026-11-09"
   },
   {
    "id": "LUN-6",
@@ -73,7 +77,8 @@
    "categoryColor": "bg-rose-600",
    "cod": "215",
    "description": "Coreografie di gruppo a tempo di musica, passi sincroni e attività motoria a basso impatto per mantenere agilità, coordinazione e buonumore.",
-   "sospesa": true
+   "sospesa": true,
+   "riprende": "2026-11-09"
   },
   {
    "id": "LUN-mv593b0c",
@@ -87,7 +92,8 @@
    "categoryColor": "bg-indigo-700",
    "cod": "420",
    "description": "",
-   "sospesa": true
+   "sospesa": true,
+   "riprende": "2026-11-09"
   },
   {
    "id": "LUN-5",
@@ -101,7 +107,8 @@
    "categoryColor": "bg-emerald-600",
    "cod": "515",
    "description": "Tecniche di decorazione pittorica applicate a seta, lino e cotone. Utilizzo di colori specifici per tessuti, stencil, sfumature ed effetti a rilievo.",
-   "sospesa": true
+   "sospesa": true,
+   "riprende": "2026-11-09"
   },
   {
    "id": "LUN-4",
@@ -115,7 +122,8 @@
    "categoryColor": "bg-purple-600",
    "cod": "245",
    "description": "Tavoli di gioco strategico e socialità. Studio delle regole federali, combinazioni di carte, prese dal monte scarti e gestione del pozzetto con tornei amichevoli.",
-   "sospesa": true
+   "sospesa": true,
+   "riprende": "2026-11-09"
   },
   {
    "id": "LUN-8",
@@ -129,7 +137,8 @@
    "categoryColor": "bg-rose-600",
    "cod": "215",
    "description": "Seconda sessione serale di danze collettive su ritmi folk e latini per stimolare l'equilibrio, il senso del ritmo e la mobilità fisica.",
-   "sospesa": true
+   "sospesa": true,
+   "riprende": "2026-11-09"
   },
   {
    "id": "LUN-7",
@@ -143,7 +152,8 @@
    "categoryColor": "bg-blue-600",
    "cod": "600",
    "description": "Itinerario geografico, letterario e poetico attraverso i panorami, le coste e i borghi siciliani che hanno ispirato grandi scrittori e artisti del Novecento.",
-   "sospesa": true
+   "sospesa": true,
+   "riprende": "2026-11-09"
   },
   {
    "id": "MAR-1",
