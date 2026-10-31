@@ -1,8 +1,8 @@
 {
- "dal": "2026-10-26",
- "al": "2026-10-30",
- "aggiornato": "2026-10-24",
- "pubblicato": "2026-10-25T13:20:43.886Z",
+ "dal": "2026-11-02",
+ "al": "2026-11-06",
+ "aggiornato": "2026-10-31",
+ "pubblicato": "2026-10-31T10:28:07.196Z",
  "versioneImmagini": 1,
  "lezioni": [
   {
@@ -16,7 +16,8 @@
    "category": "Laboratori & Artigianato",
    "categoryColor": "bg-amber-600",
    "cod": "505",
-   "description": ""
+   "description": "",
+   "sospesa": true
   },
   {
    "id": "LUN-1",
@@ -29,7 +30,8 @@
    "category": "Arte & Creatività",
    "categoryColor": "bg-emerald-500",
    "cod": "130",
-   "description": "Laboratorio artistico pratico dedicato alla pittura, all'esplorazione del colore su tela e all'acquerello. Cavalletti, tavolozze e colori ad olio e acrilico forniti per la libera espressione espressiva."
+   "description": "Laboratorio artistico pratico dedicato alla pittura, all'esplorazione del colore su tela e all'acquerello. Cavalletti, tavolozze e colori ad olio e acrilico forniti per la libera espressione espressiva.",
+   "sospesa": true
   },
   {
    "id": "LUN-3",
@@ -42,7 +44,8 @@
    "category": "Artigianato & Moda",
    "categoryColor": "bg-amber-600",
    "cod": "550",
-   "description": "Creazione artigianale di accessori e monili unici riutilizzando tessuti pregiati, perle in legno, cordoncini e passamaneria con tecniche di ricamo e montaggio a mano."
+   "description": "Creazione artigianale di accessori e monili unici riutilizzando tessuti pregiati, perle in legno, cordoncini e passamaneria con tecniche di ricamo e montaggio a mano.",
+   "sospesa": true
   },
   {
    "id": "LUN-2",
@@ -55,7 +58,8 @@
    "category": "Cinema & Cultura",
    "categoryColor": "bg-sky-600",
    "cod": "020",
-   "description": "Analisi cinematografica, scomposizione visiva e approfondimento critico di pellicole storiche con visioni guidate di sequenze chiave e dibattito culturale in aula."
+   "description": "Analisi cinematografica, scomposizione visiva e approfondimento critico di pellicole storiche con visioni guidate di sequenze chiave e dibattito culturale in aula.",
+   "sospesa": true
   },
   {
    "id": "LUN-6",
@@ -68,7 +72,8 @@
    "category": "Benessere & Movimento",
    "categoryColor": "bg-rose-600",
    "cod": "215",
-   "description": "Coreografie di gruppo a tempo di musica, passi sincroni e attività motoria a basso impatto per mantenere agilità, coordinazione e buonumore."
+   "description": "Coreografie di gruppo a tempo di musica, passi sincroni e attività motoria a basso impatto per mantenere agilità, coordinazione e buonumore.",
+   "sospesa": true
   },
   {
    "id": "LUN-mv593b0c",
@@ -81,7 +86,8 @@
    "category": "Storia & Pensiero",
    "categoryColor": "bg-indigo-700",
    "cod": "420",
-   "description": ""
+   "description": "",
+   "sospesa": true
   },
   {
    "id": "LUN-5",
@@ -94,7 +100,8 @@
    "category": "Arte & Creatività",
    "categoryColor": "bg-emerald-600",
    "cod": "515",
-   "description": "Tecniche di decorazione pittorica applicate a seta, lino e cotone. Utilizzo di colori specifici per tessuti, stencil, sfumature ed effetti a rilievo."
+   "description": "Tecniche di decorazione pittorica applicate a seta, lino e cotone. Utilizzo di colori specifici per tessuti, stencil, sfumature ed effetti a rilievo.",
+   "sospesa": true
   },
   {
    "id": "LUN-4",
@@ -108,8 +115,7 @@
    "categoryColor": "bg-purple-600",
    "cod": "245",
    "description": "Tavoli di gioco strategico e socialità. Studio delle regole federali, combinazioni di carte, prese dal monte scarti e gestione del pozzetto con tornei amichevoli.",
-   "sospesa": true,
-   "riprende": "2026-11-02"
+   "sospesa": true
   },
   {
    "id": "LUN-8",
@@ -122,7 +128,8 @@
    "category": "Benessere & Movimento",
    "categoryColor": "bg-rose-600",
    "cod": "215",
-   "description": "Seconda sessione serale di danze collettive su ritmi folk e latini per stimolare l'equilibrio, il senso del ritmo e la mobilità fisica."
+   "description": "Seconda sessione serale di danze collettive su ritmi folk e latini per stimolare l'equilibrio, il senso del ritmo e la mobilità fisica.",
+   "sospesa": true
   },
   {
    "id": "LUN-7",
@@ -135,7 +142,8 @@
    "category": "Territorio & Tradizioni",
    "categoryColor": "bg-blue-600",
    "cod": "600",
-   "description": "Itinerario geografico, letterario e poetico attraverso i panorami, le coste e i borghi siciliani che hanno ispirato grandi scrittori e artisti del Novecento."
+   "description": "Itinerario geografico, letterario e poetico attraverso i panorami, le coste e i borghi siciliani che hanno ispirato grandi scrittori e artisti del Novecento.",
+   "sospesa": true
   },
   {
    "id": "MAR-1",
@@ -242,6 +250,19 @@
    "description": ""
   },
   {
+   "id": "MAR-z1i43ujr",
+   "day": "MARTEDÌ",
+   "startTime": "17:30",
+   "endTime": "18:30",
+   "aula": "S08",
+   "title": "Corso Uncinetto",
+   "teacher": "ACCETTA M.G.",
+   "category": "Tradizioni & Artigianato",
+   "categoryColor": "bg-amber-700",
+   "cod": "500",
+   "description": ""
+  },
+  {
    "id": "MAR-8",
    "day": "MARTEDÌ",
    "startTime": "18:30",
@@ -294,6 +315,19 @@
    "description": ""
   },
   {
+   "id": "MER-2",
+   "day": "MERCOLEDÌ",
+   "startTime": "15:30",
+   "endTime": "17:30",
+   "aula": "S08",
+   "title": "Fotografia",
+   "teacher": "LA CARA F. - RIGGI V.",
+   "category": "Arti Visive",
+   "categoryColor": "bg-amber-600",
+   "cod": "110",
+   "description": "Composizione fotografica, padronanza della luce, tempi di scatto e diaframma. Uscite didattiche ed elaborazione visiva di scatti urbani e ritratti."
+  },
+  {
    "id": "MER-10",
    "day": "MERCOLEDÌ",
    "startTime": "15:30",
@@ -330,9 +364,7 @@
    "category": "Salute & Prevenzione",
    "categoryColor": "bg-red-600",
    "cod": "800A",
-   "description": "Incontri informativi su corretti stili di vita, prevenzione cardiovascolare, alimentazione equilibrata e sana longevità.",
-   "sospesa": true,
-   "riprende": "2026-11-04"
+   "description": "Incontri informativi su corretti stili di vita, prevenzione cardiovascolare, alimentazione equilibrata e sana longevità."
   },
   {
    "id": "MER-4",
@@ -359,19 +391,6 @@
    "categoryColor": "bg-purple-600",
    "cod": "100",
    "description": "Dizione, espressività corporea e valorizzazione del patrimonio dialettale e letterario della commedia e poesia siciliana."
-  },
-  {
-   "id": "MER-2",
-   "day": "MERCOLEDÌ",
-   "startTime": "16:30",
-   "endTime": "18:30",
-   "aula": "S08",
-   "title": "Fotografia",
-   "teacher": "LA CARA F. - RIGGI V.",
-   "category": "Arti Visive",
-   "categoryColor": "bg-amber-600",
-   "cod": "110",
-   "description": "Composizione fotografica, padronanza della luce, tempi di scatto e diaframma. Uscite didattiche ed elaborazione visiva di scatti urbani e ritratti."
   },
   {
    "id": "MER-8",
@@ -478,6 +497,19 @@
    "description": "Esercizi pratici per dare voce ai propri ricordi e alla fantasia: costruzione dei personaggi, dialoghi, descrizioni evocative ed elaborazione di racconti brevi."
   },
   {
+   "id": "GIO-5ki1s21d",
+   "day": "GIOVEDÌ",
+   "startTime": "17:30",
+   "endTime": "19:30",
+   "aula": "S08",
+   "title": "Tutto sulle erbe",
+   "teacher": "RUSSO M.",
+   "category": "Benessere & Salute",
+   "categoryColor": "bg-teal-600",
+   "cod": "255",
+   "description": ""
+  },
+  {
    "id": "GIO-4",
    "day": "GIOVEDÌ",
    "startTime": "17:30",
@@ -491,30 +523,43 @@
    "description": "Approfondimento storico e filosofico sulla figura di Giorgio La Pira: il politico siciliano \"sindaco santo\", costruttore instancabile di ponti di pace e dialogo mediterraneo."
   },
   {
-   "id": "VEN-1",
+   "id": "VEN-dghgkjbz",
    "day": "VENERDÌ",
-   "startTime": "16:30",
-   "endTime": "Termine",
-   "aula": "Aula Magna",
-   "title": "I VENERDI' DELLA LUTE - MOSAICO '900",
-   "teacher": "Relatori Ospiti LUTE",
-   "category": "Evento Speciale / Plenaria",
-   "categoryColor": "bg-indigo-900",
-   "cod": "900",
-   "description": "Conferenza plenaria aperta a tutti gli iscritti: percorso storico e culturale tra arte, letteratura e cronache del Novecento con interventi e testimonianze."
+   "startTime": "15:30",
+   "endTime": "16:30",
+   "aula": "Palestra",
+   "title": "Yoga Gruppo 1",
+   "teacher": "PACI E.",
+   "category": "Meditazione & Flessibilità",
+   "categoryColor": "bg-emerald-700",
+   "cod": "240",
+   "description": "Pratica yoga per il rilassamento del corpo e della mente. Asana dolci, respirazione pranayama e distensione finale per chiudere con serenità la settimana accademica."
   },
   {
-   "id": "VEN-4",
+   "id": "VEN-3",
    "day": "VENERDÌ",
    "startTime": "16:30",
    "endTime": "17:30",
    "aula": "Palestra",
-   "title": "Postura e benessere",
-   "teacher": "RAGONA L.",
-   "category": "Benessere & Salute",
-   "categoryColor": "bg-teal-600",
-   "cod": "225",
-   "description": ""
+   "title": "Yoga Gruppo 2",
+   "teacher": "PACI E.",
+   "category": "Meditazione & Flessibilità",
+   "categoryColor": "bg-emerald-700",
+   "cod": "240",
+   "description": "Pratica yoga per il rilassamento del corpo e della mente. Asana dolci, respirazione pranayama e distensione finale per chiudere con serenità la settimana accademica."
+  },
+  {
+   "id": "VEN-1",
+   "day": "VENERDÌ",
+   "startTime": "16:30",
+   "endTime": "Termine",
+   "aula": "S09",
+   "title": "I VENERDI' DELLA LUTE - MOSAICO '900 - \"Palmiro Togliatti\"",
+   "teacher": "MILAZZO F.",
+   "category": "Evento Speciale / Plenaria",
+   "categoryColor": "bg-indigo-900",
+   "cod": "900",
+   "description": "Conferenza plenaria aperta a tutti gli iscritti: percorso storico e culturale tra arte, letteratura e cronache del Novecento con interventi e testimonianze."
   },
   {
    "id": "VEN-2",
@@ -523,24 +568,24 @@
    "endTime": "18:30",
    "aula": "Palestra",
    "title": "Tarantella e balli sociali",
-   "teacher": "LA SPADA",
+   "teacher": "LA SPADA C.",
    "category": "Tradizioni Popolari",
    "categoryColor": "bg-orange-600",
    "cod": "250",
    "description": "Musica tradizionale siciliana e del sud Italia: passi tipici della tarantella, ritmi con tamburelli e coinvolgenti danze popolari."
   },
   {
-   "id": "VEN-3",
+   "id": "VEN-4",
    "day": "VENERDÌ",
    "startTime": "18:30",
    "endTime": "19:30",
    "aula": "Palestra",
-   "title": "Yoga",
-   "teacher": "PACI E.",
-   "category": "Meditazione & Flessibilità",
-   "categoryColor": "bg-emerald-700",
-   "cod": "240",
-   "description": "Pratica yoga per il rilassamento del corpo e della mente. Asana dolci, respirazione pranayama e distensione finale per chiudere con serenità la settimana accademica."
+   "title": "Postura e benessere",
+   "teacher": "RAGONA L.",
+   "category": "Benessere & Salute",
+   "categoryColor": "bg-teal-600",
+   "cod": "225",
+   "description": ""
   }
  ]
 }
