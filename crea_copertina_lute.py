@@ -14,12 +14,14 @@ FR = ImageFont.truetype(r"C:\Windows\Fonts\georgia.ttf", 26)
 W, H = 1200, 630
 im = Image.new("RGB", (W, H), CREMA); dr = ImageDraw.Draw(im)
 dr.rectangle([22, 22, W - 23, H - 23], outline=ORO, width=4)
+# Tutto nel quadrato centrale (630x630): WhatsApp Web nella casella di scrittura mostra solo quello
 logo = Image.open("images/logo-lute.png").convert("RGBA")
-h = int(logo.height * 420 / logo.width); l = logo.resize((420, h), Image.LANCZOS)
-im.paste(l, ((W - 420) // 2, 48), l); y = 48 + h
-dr.rectangle([W // 2 - 90, y + 14, W // 2 + 90, y + 19], fill=ORO)
+LW = 330; h = int(logo.height * LW / logo.width); l = logo.resize((LW, h), Image.LANCZOS)
+im.paste(l, ((W - LW) // 2, 44), l); y = 44 + h
+dr.rectangle([W // 2 - 70, y + 12, W // 2 + 70, y + 16], fill=ORO)
 def c(t, yy, f, col):
     dr.text(((W - dr.textlength(t, font=f)) / 2, yy), t, font=f, fill=col)
-c("Orario della settimana", y + 38, F(78), VERDE)
-c(periodo.replace(f" {b[:4]}", ""), y + 140, F(70), ORO)
+c("Orario", y + 30, F(92), VERDE)
+c("della settimana", y + 132, F(58), VERDE)
+c(periodo.replace(f" {b[:4]}", "").replace("dal ", "").replace(" al ", "–"), y + 208, F(66), ORO)
 out = f"images/copertina-{a}.jpg"; im.save(out, quality=88); print(out, periodo, n)
