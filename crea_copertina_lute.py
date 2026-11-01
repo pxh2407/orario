@@ -15,12 +15,11 @@ W, H = 1200, 630
 im = Image.new("RGB", (W, H), CREMA); dr = ImageDraw.Draw(im)
 dr.rectangle([22, 22, W - 23, H - 23], outline=ORO, width=4)
 logo = Image.open("images/logo-lute.png").convert("RGBA")
-h = int(logo.height * 260 / logo.width); l = logo.resize((260, h), Image.LANCZOS)
-im.paste(l, ((W - 260) // 2, 50), l); y = 50 + h
-dr.rectangle([W // 2 - 80, y + 22, W // 2 + 80, y + 26], fill=ORO)
+h = int(logo.height * 420 / logo.width); l = logo.resize((420, h), Image.LANCZOS)
+im.paste(l, ((W - 420) // 2, 48), l); y = 48 + h
+dr.rectangle([W // 2 - 90, y + 14, W // 2 + 90, y + 19], fill=ORO)
 def c(t, yy, f, col):
     dr.text(((W - dr.textlength(t, font=f)) / 2, yy), t, font=f, fill=col)
-c("Orario delle lezioni", y + 45, F(62), VERDE); c("della settimana", y + 115, F(62), VERDE)
-c(periodo, y + 200, F(44), ORO)
-c(f"Tocca per vedere giorno, aula, orario e docente · {n} lezioni", H - 85, FR, VERDE)
+c("Orario della settimana", y + 38, F(78), VERDE)
+c(periodo.replace(f" {b[:4]}", ""), y + 140, F(70), ORO)
 out = f"images/copertina-{a}.jpg"; im.save(out, quality=88); print(out, periodo, n)
