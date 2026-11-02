@@ -61,7 +61,8 @@ const FOGLIO_A4 = (() => {
   }
 
   // ---------- pezzi del foglio ----------
-  // riga di una lezione: ora, aula, titolo; sotto il docente (si può togliere se manca spazio) e, se sospesa, "vedi nota n"
+  // riga di una lezione: ora, aula, titolo e, di seguito sulla stessa riga se c'è posto, il docente
+  // (si può togliere se manca spazio) e, se sospesa, "vedi nota n"
   function riga(l, colore, nNota) {
     return `
       <div class="a4-row${l.sospesa ? ' a4-sospesa' : ''}">
@@ -102,23 +103,24 @@ const FOGLIO_A4 = (() => {
 
   // ---------- aspetto: Atkinson Hyperlegible (Braille Institute), fatto per chi vede poco ----------
   const CSS = `
-    .a4-sheet { width: 794px; height: 1123px; background: #fff; padding: 32px 36px 22px; box-sizing: border-box; font-family: 'Atkinson Hyperlegible', 'Segoe UI', sans-serif; color: #1e293b; display: flex; flex-direction: column; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .a4-head { display: flex; align-items: center; gap: 14px; padding-bottom: 12px; border-bottom: 3px solid #f28c38; }
-    .a4-logo { height: 50px; width: auto; flex-shrink: 0; }
+    .a4-sheet { width: 794px; height: 1123px; background: #fff; padding: 28px 32px 22px; box-sizing: border-box; font-family: 'Atkinson Hyperlegible', 'Segoe UI', sans-serif; color: #1e293b; display: flex; flex-direction: column; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .a4-head { display: flex; align-items: center; gap: 14px; padding-bottom: 10px; border-bottom: 3px solid #f28c38; }
+    .a4-logo { height: 46px; width: auto; flex-shrink: 0; }
     .a4-title { font-family: var(--a4-font-titolo, 'Playfair Display', serif); font-size: 28px; font-weight: 700; color: #0d2538; line-height: 1.1; }
     .a4-sub { font-size: 14px; color: #334155; margin-top: 4px; font-weight: 700; }
     .a4-count { margin-left: auto; text-align: center; background: #0d2538; color: #fff; border-radius: 12px; padding: 6px 14px; font-size: 12px; font-weight: 700; line-height: 1.2; }
     .a4-count b { display: block; font-size: 25px; }
-    .a4-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 14px; flex: 1; min-height: 0; --k: 1; }
+    .a4-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 12px; flex: 1; min-height: 0; --k: 1; }
     .a4-day { margin-bottom: calc(10px * var(--k)); }
     .a4-dayhead { background: #0d2538; color: #fff; font-weight: 700; font-size: calc(14px * var(--k)); letter-spacing: 0.05em; text-transform: uppercase; padding: calc(5px * var(--k)) 10px; border-radius: 8px; display: flex; justify-content: space-between; }
     .a4-dayhead span { letter-spacing: 0; text-transform: none; opacity: 0.85; }
-    .a4-row { display: flex; align-items: center; gap: 8px; padding: calc(5px * var(--k)) 4px; border-bottom: 1px solid #e2e8f0; }
+    .a4-row { display: flex; align-items: center; gap: 8px; padding: calc(4px * var(--k)) 4px; border-bottom: 1px solid #e2e8f0; }
     .a4-time { width: calc(96px * var(--k)); flex-shrink: 0; font-weight: 700; font-size: calc(14px * var(--k)); color: #1e293b; }
-    .a4-aula { width: 64px; height: 20px; line-height: 20px; flex-shrink: 0; text-align: center; color: #fff; font-weight: 700; font-size: 11.5px; border-radius: 5px; padding: 0; }
-    .a4-txt { min-width: 0; }
-    .a4-txt b { display: block; font-size: calc(16px * var(--k)); line-height: 1.2; color: #0d2538; }
-    .a4-txt span { display: block; font-size: calc(13px * var(--k)); line-height: 1.25; }
+    .a4-aula { width: 58px; height: 20px; line-height: 20px; flex-shrink: 0; text-align: center; color: #fff; font-weight: 700; font-size: 11.5px; border-radius: 5px; padding: 0; }
+    /* docente subito dopo il titolo: va a capo solo se non c'è posto, e mai spezzato a metà */
+    .a4-txt { min-width: 0; font-size: calc(16px * var(--k)); line-height: 1.25; }
+    .a4-txt b { color: #0d2538; }
+    .a4-txt span { font-size: calc(13px * var(--k)); white-space: nowrap; margin-left: 0.4em; }
     .a4-doc { color: #475569; }
     .a4-doc.a4-via { display: none !important; }
     .a4-vedi { color: #991b1b; font-weight: 700; }
