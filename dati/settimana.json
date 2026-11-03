@@ -1,8 +1,8 @@
 {
  "dal": "2026-11-02",
  "al": "2026-11-06",
- "aggiornato": "2026-10-31",
- "pubblicato": "2026-10-31T10:53:35.721Z",
+ "aggiornato": "2026-11-03",
+ "pubblicato": "2026-11-03T14:00:00.000Z",
  "versioneImmagini": 1,
  "lezioni": [
   {
@@ -327,8 +327,8 @@
   {
    "id": "MER-2",
    "day": "MERCOLEDÌ",
-   "startTime": "15:30",
-   "endTime": "17:30",
+   "startTime": "16:30",
+   "endTime": "18:30",
    "aula": "S08",
    "title": "Fotografia",
    "teacher": "LA CARA F. - RIGGI V.",
