@@ -66,7 +66,7 @@ const FOGLIO_A4 = (() => {
   function riga(l, colore, nNota) {
     return `
       <div class="a4-row${l.sospesa ? ' a4-sospesa' : ''}">
-        <div class="a4-time">${l.startTime} – ${l.endTime}</div>
+        <div class="a4-time">${l.startTime}–${l.endTime}</div>
         <div class="a4-aula" style="background:${colore}">${esc(l.aula)}</div>
         <div class="a4-txt"><b>${l.sospesa ? `<em class="a4-barrato">${esc(l.title)}<i></i></em>` : esc(l.title)}</b>${l.teacher ? `<span class="a4-doc">${esc(l.teacher)}</span>` : ''}${l.sospesa ? `<span class="a4-vedi">vedi nota ${nNota}</span>` : ''}</div>
       </div>`;
@@ -88,7 +88,7 @@ const FOGLIO_A4 = (() => {
       c.lastElementChild.getBoundingClientRect().bottom > cols.getBoundingClientRect().bottom + 0.5);
     let k = 1, tolti = 0;
     const metti = v => { k = v; cols.style.setProperty('--k', v); };
-    metti(1);
+    metti(1.3);
     while (fuori().length && k > K_DOCENTE) metti(Math.max(K_DOCENTE, Math.round((k - 0.01) * 100) / 100));
     for (let f = fuori(); f.length; f = fuori()) {
       const doc = f.flatMap(c => [...c.querySelectorAll('.a4-doc:not(.a4-via)')])
@@ -103,25 +103,25 @@ const FOGLIO_A4 = (() => {
 
   // ---------- aspetto: Atkinson Hyperlegible (Braille Institute), fatto per chi vede poco ----------
   const CSS = `
-    .a4-sheet { width: 794px; height: 1123px; background: #fff; padding: 28px 32px 22px; box-sizing: border-box; font-family: 'Atkinson Hyperlegible', 'Segoe UI', sans-serif; color: #1e293b; display: flex; flex-direction: column; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .a4-head { display: flex; align-items: center; gap: 14px; padding-bottom: 10px; border-bottom: 3px solid #f28c38; }
+    .a4-sheet { width: 794px; height: 1123px; background: #fff; padding: 10px 22px 8px; box-sizing: border-box; font-family: 'Atkinson Hyperlegible', 'Segoe UI', sans-serif; color: #1e293b; display: flex; flex-direction: column; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .a4-head { display: flex; align-items: center; gap: 14px; padding-bottom: 6px; border-bottom: 3px solid #f28c38; }
     .a4-logo { height: 46px; width: auto; flex-shrink: 0; }
     .a4-title { font-family: var(--a4-font-titolo, 'Playfair Display', serif); font-size: 28px; font-weight: 700; color: #0d2538; line-height: 1.1; }
     .a4-sub { font-size: 14px; color: #334155; margin-top: 4px; font-weight: 700; }
     .a4-count { margin-left: auto; text-align: center; background: #0d2538; color: #fff; border-radius: 12px; padding: 6px 14px; font-size: 12px; font-weight: 700; line-height: 1.2; }
     .a4-count b { display: block; font-size: 25px; }
-    .a4-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 12px; flex: 1; min-height: 0; --k: 1; }
+    .a4-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; flex: 1; min-height: 0; --k: 1; }
     .a4-day { margin-bottom: calc(10px * var(--k)); }
     .a4-dayhead { background: #0d2538; color: #fff; font-weight: 700; font-size: calc(14px * var(--k)); letter-spacing: 0.05em; text-transform: uppercase; padding: calc(5px * var(--k)) 10px; border-radius: 8px; display: flex; justify-content: space-between; }
     .a4-dayhead span { letter-spacing: 0; text-transform: none; opacity: 0.85; }
-    .a4-row { display: flex; align-items: center; gap: 8px; padding: calc(4px * var(--k)) 4px; border-bottom: 1px solid #e2e8f0; }
-    .a4-time { width: calc(96px * var(--k)); flex-shrink: 0; font-weight: 700; font-size: calc(14px * var(--k)); color: #1e293b; }
-    .a4-aula { width: 58px; height: 20px; line-height: 20px; flex-shrink: 0; text-align: center; color: #fff; font-weight: 700; font-size: 11.5px; border-radius: 5px; padding: 0; }
+    .a4-row { display: flex; align-items: center; gap: 6px; padding: calc(4px * var(--k)) 3px; border-bottom: 1px solid #e2e8f0; }
+    .a4-time { width: calc(80px * var(--k)); flex-shrink: 0; font-weight: 700; font-size: calc(14px * var(--k)); color: #1e293b; }
+    .a4-aula { width: 50px; height: 20px; line-height: 20px; flex-shrink: 0; text-align: center; color: #fff; font-weight: 700; font-size: 11.5px; border-radius: 5px; padding: 0; }
     /* docente subito dopo il titolo: va a capo solo se non c'è posto, e mai spezzato a metà */
     .a4-txt { min-width: 0; font-size: calc(16px * var(--k)); line-height: 1.25; }
     .a4-txt b { color: #0d2538; }
     .a4-txt span { font-size: calc(13px * var(--k)); white-space: nowrap; margin-left: 0.4em; }
-    .a4-doc { color: #475569; }
+    .a4-doc { color: #1e293b; font-weight: 700; }
     .a4-doc.a4-via { display: none !important; }
     .a4-vedi { color: #991b1b; font-weight: 700; }
     .a4-sospesa { background: #f1f5f9; }
@@ -134,7 +134,7 @@ const FOGLIO_A4 = (() => {
     .a4-note-due .a4-note-tit { grid-column: 1 / -1; }
     .a4-note-tit { font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 12px; margin-bottom: 2px; }
     .a4-nota b { font-weight: 700; }
-    .a4-foot { border-top: 1px solid #cbd5e1; margin-top: 8px; padding-top: 7px; font-size: 12px; color: #475569; display: flex; justify-content: space-between; }`;
+    .a4-foot { border-top: 1px solid #cbd5e1; margin-top: 4px; padding-top: 4px; font-size: 12px; color: #475569; display: flex; justify-content: space-between; }`;
   const FONT = 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Playfair+Display:wght@700&display=swap';
 
   // stile e carattere si aggiungono alla pagina solo la prima volta che serve il foglio
