@@ -115,7 +115,7 @@ const FOGLIO_A4 = (() => {
     .a4-dayhead { background: #0d2538; color: #fff; font-weight: 700; font-size: calc(14px * var(--k)); letter-spacing: 0.05em; text-transform: uppercase; padding: calc(5px * var(--k)) 10px; border-radius: 8px; display: flex; justify-content: space-between; }
     .a4-dayhead span { letter-spacing: 0; text-transform: none; opacity: 0.85; }
     .a4-row { display: flex; align-items: center; gap: 6px; padding: calc(4px * var(--k)) 3px; border-bottom: 1px solid #e2e8f0; }
-    .a4-time { width: calc(86px * var(--k)); flex-shrink: 0; font-weight: 700; font-size: calc(14px * var(--k)); color: #1e293b; }
+    .a4-time { width: calc(74px * var(--k)); flex-shrink: 0; font-weight: 700; font-size: calc(14px * var(--k)); color: #1e293b; }
     .a4-aula { width: 50px; height: 20px; line-height: 20px; flex-shrink: 0; text-align: center; color: #fff; font-weight: 700; font-size: 11.5px; border-radius: 5px; padding: 0; }
     /* docente subito dopo il titolo: va a capo solo se non c'è posto, e mai spezzato a metà */
     .a4-txt { min-width: 0; font-size: calc(16px * var(--k)); line-height: 1.25; }
@@ -135,9 +135,9 @@ const FOGLIO_A4 = (() => {
     .a4-note-tit { font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 12px; margin-bottom: 2px; }
     .a4-nota b { font-weight: 700; }
     .a4-foot { border-top: 1px solid #cbd5e1; margin-top: 4px; padding-top: 4px; font-size: 12px; color: #475569; display: flex; justify-content: space-between; }
-    /* Atkinson ha lo zero barrato, brutto in piccolo: orari, aule e date con il carattere della pagina */
-    .a4-time, .a4-aula, .a4-dayhead span, .a4-count b, .a4-sub { font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif; }`;
-  const FONT = 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Plus+Jakarta+Sans:wght@700&family=Playfair+Display:wght@700&display=swap';
+    /* Atkinson ha lo zero barrato, brutto in piccolo: orari, aule e date in un carattere stretto con lo zero normale */
+    .a4-time, .a4-aula, .a4-dayhead span, .a4-count b, .a4-sub { font-family: 'Roboto Condensed', 'Arial Narrow', sans-serif; }`;
+  const FONT = 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Roboto+Condensed:wght@700&family=Playfair+Display:wght@700&display=swap';
 
   // stile e carattere si aggiungono alla pagina solo la prima volta che serve il foglio
   // (avatar.html e lo script delle voci usano soltanto i testi della ripresa)
@@ -158,7 +158,7 @@ const FOGLIO_A4 = (() => {
   function caratteriPronti() {
     if (typeof document === 'undefined') return Promise.resolve();
     return installa()
-      .then(() => Promise.all(['400 16px "Atkinson Hyperlegible"', '700 16px "Atkinson Hyperlegible"', '700 14px "Plus Jakarta Sans"', '700 28px "Playfair Display"']
+      .then(() => Promise.all(['400 16px "Atkinson Hyperlegible"', '700 16px "Atkinson Hyperlegible"', '700 14px "Roboto Condensed"', '700 28px "Playfair Display"']
         .map(f => document.fonts.load(f).catch(() => {}))))
       .then(() => document.fonts.ready);
   }
