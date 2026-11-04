@@ -93,10 +93,11 @@ const FOGLIO_A4 = (() => {
     return `
       <div class="a4-row${l.sospesa ? ' a4-sospesa' : ''}">
         <div class="a4-aula" style="background:${colore}">${esc(l.aula)}</div>
-        <div class="a4-txt"><b>${l.sospesa ? `<em class="a4-barrato">${esc(l.title)}<i></i></em>` : esc(l.title)}</b>${l.teacher ? `<span class="a4-doc">${esc(l.teacher)}</span>` : ''}${l.sospesa ? `<span class="a4-vedi">vedi nota ${nNota}</span>` : ''}</div>
+        <div class="a4-txt"><b>${l.sospesa ? `<em class="a4-barrato">${esc(l.title)}<i></i></em>` : esc(l.title)}</b>${l.teacher ? `<span class="a4-doc">${esc(l.teacher)}</span>` : ''}${l.sospesa ? `<span class="a4-vedi">SOSPESA</span>` : ''}</div>
       </div>`;
   }
   function blocchiNote(testi) {
+    return '';  // nota a piè di pagina tolta su richiesta (2026-11-04): ogni lezione sospesa dice «SOSPESA»
     if (!testi.length) return '';
     return `<div class="a4-note${testi.length > 4 ? ' a4-note-due' : ''}">
       ${testi.map((t, i) => `<div class="a4-nota"><b>${i + 1}</b> – ${esc(t)}</div>`).join('')}</div>`;
