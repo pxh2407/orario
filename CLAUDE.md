@@ -85,3 +85,4 @@ Online: https://pxh2407.github.io/orario/ — repo `pxh2407/orario`, branch `mai
 - 2026-11-04 (poi): su richiesta dell'utente l'alternanza bianco/grigio è **solo nella colonna orario** a sinistra (`.a4-alt .a4-ora`), non su tutto il gruppo. `foglio-a4.js?v=14`.
 - 2026-11-04 (ancora): l'utente voleva l'alternanza su **tutta la riga del gruppo** (orario + corsi), non solo sull'orario: rimesso `.a4-alt { background: #d3dbe6 }` sul gruppo (annulla la voce precedente). `foglio-a4.js?v=15`.
 - 2026-11-04 (sera): tolto lo sfondo grigio delle righe sospese (`.a4-sospesa` trasparente): sul lunedì tutto sospeso copriva l'alternanza bianco/grigio dei gruppi; restano titolo barrato e testo grigio. `foglio-a4.js?v=16`.
+- 2026-11-04 (definitivo): alternanza bianco/grigio **solo sulla colonna dell'orario** (`.a4-alt .a4-ora`) in tutti i giorni; il malinteso del lunedì era dovuto allo sfondo delle righe sospese (ora tolto). Non riguarda il blocco intero. `foglio-a4.js?v=17`.
