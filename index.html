@@ -29,7 +29,7 @@
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
   <!-- Foglio A4 e testi delle lezioni sospese (in comune con Gestione Orario) -->
-  <script src="foglio-a4.js?v=9"></script>
+  <script src="foglio-a4.js?v=11"></script>
 
   <script>
     tailwind.config = {
@@ -724,7 +724,7 @@
         const html = `
           <div class="a4-day">
             <div class="a4-dayhead">${day} <span>${dataGiorno(day)}</span></div>
-            ${lessons.map(l => FOGLIO_A4.riga(l, a4AulaColors[l.aula] || '#334155', note.numero.get(l.id))).join('')}
+            ${FOGLIO_A4.gruppi(lessons, l => a4AulaColors[l.aula] || '#334155', l => note.numero.get(l.id))}
           </div>`;
         return { html, n: lessons.length };
       });
@@ -738,23 +738,12 @@
       }
 
       return `
-        <div class="a4-head">
-          <img class="a4-logo" src="images/logo-lute.png" alt="LUTE">
-          <div>
-            <div class="a4-title">LUTE · Orario delle Lezioni</div>
-            <div class="a4-sub">Settimana ${periodoLungo()} · Anno Accademico 2026/27</div>
-          </div>
-          <div class="a4-count"><b>${lessonsData.filter(l => !l.sospesa).length}</b>lezioni</div>
-        </div>
+        ${FOGLIO_A4.testata('<img class="a4-logo" src="images/logo-lute.png" alt="LUTE">', periodoLungo(), lessonsData.filter(l => !l.sospesa).length, aggiornatoIl())}
         <div class="a4-cols">
           <div>${blocks.slice(0, split).map(b => b.html).join('')}</div>
           <div>${blocks.slice(split).map(b => b.html).join('')}</div>
         </div>
-        ${FOGLIO_A4.blocchiNote(note.testi)}
-        <div class="a4-foot">
-          <span><b>LUTE Milazzo</b> · Libera Università delle Tre Età</span>
-          <span>Aggiornato al ${aggiornatoIl()}</span>
-        </div>`;
+        ${FOGLIO_A4.blocchiNote(note.testi)}`;
     }
 
     function fitA4Preview() {

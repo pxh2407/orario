@@ -61,19 +61,44 @@ const FOGLIO_A4 = (() => {
   }
 
   // ---------- pezzi del foglio ----------
-  // riga di una lezione: ora, aula, titolo e, di seguito sulla stessa riga se c'è posto, il docente
+  // intestazione in una riga: logo, "Orario LUTE dal 2 al 6 novembre" (senza anno) e, a destra, lezioni e aggiornamento
+  function testata(logo, periodo, lezioni, aggiornato) {
+    return `
+      <div class="a4-head">
+        ${logo}
+        <div class="a4-title">Orario LUTE ${periodo.replace(/ \d{4}/g, '')}</div>
+        <div class="a4-info">${lezioni} lezioni<br>Aggiornato al ${aggiornato}</div>
+      </div>`;
+  }
+  // lezioni di un giorno raggruppate per orario: inizio e fine una sola volta, a sinistra del gruppo.
+  // colore(l) e nNota(l) danno il colore dell'aula e il numero della nota
+  function gruppi(lezioni, colore, nNota) {
+    const perOrario = new Map();
+    lezioni.forEach(l => {
+      const orario = `${l.startTime}–${l.endTime}`;
+      perOrario.set(orario, [...(perOrario.get(orario) || []), l]);
+    });
+    return [...perOrario.keys()].sort().map(orario => {
+      const [inizio, fine] = orario.split('–');
+      return `
+      <div class="a4-gruppo">
+        <div class="a4-ora"><span>${inizio}</span><span>${fine}</span></div>
+        <div class="a4-righe">${perOrario.get(orario).map(l => riga(l, colore(l), nNota(l))).join('')}</div>
+      </div>`;
+    }).join('');
+  }
+  // riga di una lezione: aula, titolo e, di seguito sulla stessa riga se c'è posto, il docente
   // (si può togliere se manca spazio) e, se sospesa, "vedi nota n"
   function riga(l, colore, nNota) {
     return `
       <div class="a4-row${l.sospesa ? ' a4-sospesa' : ''}">
-        <div class="a4-time">${l.startTime}–${l.endTime}</div>
         <div class="a4-aula" style="background:${colore}">${esc(l.aula)}</div>
         <div class="a4-txt"><b>${l.sospesa ? `<em class="a4-barrato">${esc(l.title)}<i></i></em>` : esc(l.title)}</b>${l.teacher ? `<span class="a4-doc">${esc(l.teacher)}</span>` : ''}${l.sospesa ? `<span class="a4-vedi">vedi nota ${nNota}</span>` : ''}</div>
       </div>`;
   }
   function blocchiNote(testi) {
     if (!testi.length) return '';
-    return `<div class="a4-note${testi.length > 4 ? ' a4-note-due' : ''}"><div class="a4-note-tit">Note</div>
+    return `<div class="a4-note${testi.length > 4 ? ' a4-note-due' : ''}">
       ${testi.map((t, i) => `<div class="a4-nota"><b>${i + 1}</b> – ${esc(t)}</div>`).join('')}</div>`;
   }
 
@@ -104,18 +129,19 @@ const FOGLIO_A4 = (() => {
   // ---------- aspetto: Atkinson Hyperlegible (Braille Institute), fatto per chi vede poco ----------
   const CSS = `
     .a4-sheet { width: 794px; height: 1123px; background: #fff; padding: 10px 22px 8px; box-sizing: border-box; font-family: 'Atkinson Hyperlegible', 'Segoe UI', sans-serif; color: #1e293b; display: flex; flex-direction: column; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .a4-head { display: flex; align-items: center; gap: 14px; padding-bottom: 6px; border-bottom: 3px solid #f28c38; }
-    .a4-logo { height: 46px; width: auto; flex-shrink: 0; }
-    .a4-title { font-family: var(--a4-font-titolo, 'Playfair Display', serif); font-size: 28px; font-weight: 700; color: #0d2538; line-height: 1.1; }
-    .a4-sub { font-size: 14px; color: #334155; margin-top: 4px; font-weight: 700; }
-    .a4-count { margin-left: auto; text-align: center; background: #0d2538; color: #fff; border-radius: 12px; padding: 6px 14px; font-size: 12px; font-weight: 700; line-height: 1.2; }
-    .a4-count b { display: block; font-size: 25px; }
+    .a4-head { display: flex; align-items: center; gap: 12px; padding-bottom: 4px; border-bottom: 3px solid #f28c38; }
+    .a4-logo { height: 34px; width: auto; flex-shrink: 0; }
+    .a4-title { font-family: var(--a4-font-titolo, 'Playfair Display', serif); font-size: 27px; font-weight: 700; color: #0d2538; line-height: 1.1; white-space: nowrap; }
+    .a4-info { margin-left: auto; text-align: right; font-size: 13px; font-weight: 700; color: #334155; line-height: 1.2; white-space: nowrap; }
     .a4-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; flex: 1; min-height: 0; --k: 1; }
     .a4-day { margin-bottom: calc(10px * var(--k)); }
     .a4-dayhead { background: #0d2538; color: #fff; font-weight: 700; font-size: calc(14px * var(--k)); letter-spacing: 0.05em; text-transform: uppercase; padding: calc(5px * var(--k)) 10px; border-radius: 8px; display: flex; justify-content: space-between; }
     .a4-dayhead span { letter-spacing: 0; text-transform: none; opacity: 0.85; }
     .a4-row { display: flex; align-items: center; gap: 6px; padding: calc(4px * var(--k)) 3px; border-bottom: 1px solid #e2e8f0; }
-    .a4-time { width: calc(74px * var(--k)); flex-shrink: 0; font-weight: 700; font-size: calc(14px * var(--k)); color: #1e293b; }
+    .a4-gruppo { display: flex; border-bottom: 1.5px solid #94a3b8; }
+    .a4-ora { width: calc(46px * var(--k)); flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; text-align: center; background: #eef2f7; font-weight: 700; font-size: calc(14px * var(--k)); line-height: 1.15; color: #1e293b; }
+    .a4-righe { flex: 1; min-width: 0; }
+    .a4-righe .a4-row:last-child { border-bottom: none; }
     .a4-aula { width: 50px; height: 20px; line-height: 20px; flex-shrink: 0; text-align: center; color: #fff; font-weight: 700; font-size: 11.5px; border-radius: 5px; padding: 0; }
     /* docente subito dopo il titolo: va a capo solo se non c'è posto, e mai spezzato a metà */
     .a4-txt { min-width: 0; font-size: calc(16px * var(--k)); line-height: 1.25; }
@@ -125,18 +151,15 @@ const FOGLIO_A4 = (() => {
     .a4-doc.a4-via { display: none !important; }
     .a4-vedi { color: #991b1b; font-weight: 700; }
     .a4-sospesa { background: #f1f5f9; }
-    .a4-sospesa .a4-time, .a4-sospesa .a4-txt b { color: #64748b; }
+    .a4-sospesa .a4-txt b { color: #64748b; }
     /* barrato disegnato con una linea vera: html2canvas metterebbe la riga di text-decoration sopra il testo */
     .a4-barrato { position: relative; display: inline-block; font-style: normal; }
     .a4-barrato i { position: absolute; left: -2px; right: -2px; top: 52%; height: 2px; background: #991b1b; }
-    .a4-note { margin-top: 8px; padding: 8px 12px; border: 1.5px solid #991b1b; border-radius: 10px; color: #991b1b; font-size: 13px; line-height: 1.35; }
+    .a4-note { margin-top: 5px; padding: 3px 10px; border: 1px solid #991b1b; border-radius: 10px; color: #991b1b; font-size: 13px; line-height: 1.35; }
     .a4-note-due { display: grid; grid-template-columns: 1fr 1fr; column-gap: 18px; }
-    .a4-note-due .a4-note-tit { grid-column: 1 / -1; }
-    .a4-note-tit { font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 12px; margin-bottom: 2px; }
     .a4-nota b { font-weight: 700; }
-    .a4-foot { border-top: 1px solid #cbd5e1; margin-top: 4px; padding-top: 4px; font-size: 12px; color: #475569; display: flex; justify-content: space-between; }
     /* Atkinson ha lo zero barrato, brutto in piccolo: orari, aule e date in un carattere stretto con lo zero normale */
-    .a4-time, .a4-aula, .a4-dayhead span, .a4-count b, .a4-sub { font-family: 'Roboto Condensed', 'Arial Narrow', sans-serif; }`;
+    .a4-ora, .a4-aula, .a4-dayhead span, .a4-info { font-family: 'Roboto Condensed', 'Arial Narrow', sans-serif; }`;
   const FONT = 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Roboto+Condensed:wght@700&family=Playfair+Display:wght@700&display=swap';
 
   // stile e carattere si aggiungono alla pagina solo la prima volta che serve il foglio
@@ -166,12 +189,12 @@ const FOGLIO_A4 = (() => {
   // html2canvas mette il testo più in basso del browser: nella copia da fotografare (onclone) lo rialzo
   function correggiPerFoto(doc) {
     doc.querySelectorAll('.a4-aula').forEach(el => { el.innerHTML = '<span style="position:relative;top:-5px">' + el.innerHTML + '</span>'; });
-    doc.querySelectorAll('.a4-time, .a4-txt').forEach(el => { el.style.position = 'relative'; el.style.top = '-6px'; });
+    doc.querySelectorAll('.a4-ora span, .a4-txt, .a4-title, .a4-info, .a4-nota').forEach(el => { el.style.position = 'relative'; el.style.top = '-6px'; });
     doc.querySelectorAll('.a4-barrato i').forEach(el => { el.style.top = 'calc(52% + 6px)'; });
     doc.querySelectorAll('.a4-dayhead').forEach(el => { el.innerHTML = '<span style="position:relative;top:-6px;opacity:1">' + el.innerHTML + '</span>'; el.firstChild.style.cssText += ';display:flex;justify-content:space-between;width:100%;letter-spacing:inherit;text-transform:inherit;font-weight:inherit'; });
   }
 
-  return { SETTIMANA, MESI, correggiPerFoto, ripresaLunga, ripresaBreve, ripresaProposta, note, riga, blocchiNote, adatta, installa, caratteriPronti };
+  return { SETTIMANA, MESI, correggiPerFoto, ripresaLunga, ripresaBreve, ripresaProposta, note, testata, gruppi, blocchiNote, adatta, installa, caratteriPronti };
 })();
 
 if (typeof module !== 'undefined') module.exports = FOGLIO_A4;
