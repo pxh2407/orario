@@ -61,6 +61,13 @@ const FOGLIO_A4 = (() => {
   }
 
   // ---------- pezzi del foglio ----------
+  // titolo del giorno: se TUTTE le lezioni del giorno sono sospese aggiunge "riprende lunedì 9 novembre" (o "solo questa settimana")
+  function titoloGiorno(day, lezioni) {
+    if (!lezioni.length || !lezioni.every(l => l.sospesa)) return esc(day);
+    const riprese = [...new Set(lezioni.map(l => l.riprende || ''))];
+    const txt = riprese.length === 1 && riprese[0] ? ripresaLunga(lezioni[0]) : 'solo questa settimana';
+    return `<b class="a4-dg">${esc(day)}<i>${esc(txt)}</i></b>`;
+  }
   // intestazione in una riga: logo, "Orario LUTE dal 2 al 6 novembre" (senza anno) e, a destra, lezioni e aggiornamento
   function testata(logo, periodo, lezioni, aggiornato) {
     return `
@@ -137,6 +144,8 @@ const FOGLIO_A4 = (() => {
     .a4-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; flex: 1; min-height: 0; --k: 1; }
     .a4-day { margin-bottom: calc(10px * var(--k)); }
     .a4-dayhead { background: #0d2538; color: #fff; font-weight: 700; font-size: calc(14px * var(--k)); letter-spacing: 0.05em; text-transform: uppercase; padding: calc(5px * var(--k)) 10px; border-radius: 8px; display: flex; justify-content: space-between; }
+    .a4-dg { font-weight: 700; }
+    .a4-dg i { font-style: normal; text-transform: none; letter-spacing: 0; font-size: calc(12.5px * var(--k)); color: #fecaca; margin-left: 10px; }
     .a4-dayhead span { letter-spacing: 0; text-transform: none; opacity: 0.85; }
     .a4-row { display: flex; align-items: center; gap: 6px; padding: calc(4px * var(--k)) 3px; }
     .a4-gruppo { display: flex; border: 1.5px solid #94a3b8; }
@@ -195,7 +204,7 @@ const FOGLIO_A4 = (() => {
     doc.querySelectorAll('.a4-dayhead').forEach(el => { el.innerHTML = '<span style="position:relative;top:-6px;opacity:1">' + el.innerHTML + '</span>'; el.firstChild.style.cssText += ';display:flex;justify-content:space-between;width:100%;letter-spacing:inherit;text-transform:inherit;font-weight:inherit'; });
   }
 
-  return { SETTIMANA, MESI, correggiPerFoto, ripresaLunga, ripresaBreve, ripresaProposta, note, testata, gruppi, blocchiNote, adatta, installa, caratteriPronti };
+  return { SETTIMANA, MESI, correggiPerFoto, ripresaLunga, ripresaBreve, ripresaProposta, note, testata, gruppi, titoloGiorno, blocchiNote, adatta, installa, caratteriPronti };
 })();
 
 if (typeof module !== 'undefined') module.exports = FOGLIO_A4;

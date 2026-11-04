@@ -29,7 +29,7 @@
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
   <!-- Foglio A4 e testi delle lezioni sospese (in comune con Gestione Orario) -->
-  <script src="foglio-a4.js?v=22"></script>
+  <script src="foglio-a4.js?v=23"></script>
 
   <script>
     tailwind.config = {
@@ -723,7 +723,7 @@
         const lessons = lessonsData.filter(l => l.day === day);   // già ordinate per ora e aula
         const html = `
           <div class="a4-day">
-            <div class="a4-dayhead">${day} <span>${dataGiorno(day)}</span></div>
+            <div class="a4-dayhead">${FOGLIO_A4.titoloGiorno(day, lessons)} <span>${dataGiorno(day)}</span></div>
             ${FOGLIO_A4.gruppi(lessons, l => a4AulaColors[l.aula] || '#334155', l => note.numero.get(l.id))}
           </div>`;
         return { html, n: lessons.length };
