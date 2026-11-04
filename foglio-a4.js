@@ -152,10 +152,9 @@ const FOGLIO_A4 = (() => {
     .a4-doc.a4-via { display: none !important; }
     .a4-vedi { color: #991b1b; font-weight: 700; }
     .a4-sospesa { background: transparent; }
-    .a4-sospesa .a4-txt b { color: #64748b; }
     /* barrato disegnato con una linea vera: html2canvas metterebbe la riga di text-decoration sopra il testo */
-    .a4-barrato { position: relative; display: inline-block; font-style: normal; }
-    .a4-barrato i { position: absolute; left: -2px; right: -2px; top: 52%; height: 2px; background: #991b1b; }
+    .a4-barrato { font-style: normal; }
+    .a4-barrato i { display: none; }
     .a4-note { margin-top: 5px; padding: 3px 10px; border: 1px solid #991b1b; border-radius: 10px; color: #991b1b; font-size: 13px; line-height: 1.35; }
     .a4-note-due { display: grid; grid-template-columns: 1fr 1fr; column-gap: 18px; }
     .a4-nota b { font-weight: 700; }
