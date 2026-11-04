@@ -93,7 +93,7 @@ const FOGLIO_A4 = (() => {
     return `
       <div class="a4-row${l.sospesa ? ' a4-sospesa' : ''}">
         <div class="a4-aula" style="background:${colore}">${esc(l.aula)}</div>
-        <div class="a4-txt"><b>${l.sospesa ? `<em class="a4-barrato">${esc(l.title)}<i></i></em>` : esc(l.title)}</b>${l.teacher ? `<span class="a4-doc">${esc(l.teacher)}</span>` : ''}${l.sospesa ? `<span class="a4-vedi">SOSPESA</span>` : ''}</div>
+        <div class="a4-txt"><b>${l.sospesa ? `<em class="a4-barrato">${esc(l.title)}<i></i></em>` : esc(l.title)}</b><wbr>${l.teacher ? `<span class="a4-doc">${esc(l.teacher)}</span>` : ''}<wbr>${l.sospesa ? `<span class="a4-vedi">SOSPESA</span>` : ''}</div>
       </div>`;
   }
   function blocchiNote(testi) {
@@ -134,7 +134,7 @@ const FOGLIO_A4 = (() => {
     .a4-logo { height: 34px; width: auto; flex-shrink: 0; }
     .a4-title { font-family: var(--a4-font-titolo, 'Playfair Display', serif); font-size: 27px; font-weight: 700; color: #0d2538; line-height: 1.1; white-space: nowrap; }
     .a4-info { margin-left: auto; text-align: right; font-size: 13px; font-weight: 700; color: #334155; line-height: 1.2; white-space: nowrap; }
-    .a4-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; flex: 1; min-height: 0; --k: 1; }
+    .a4-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; margin-top: 8px; flex: 1; min-height: 0; --k: 1; }
     .a4-day { margin-bottom: calc(10px * var(--k)); }
     .a4-dayhead { background: #0d2538; color: #fff; font-weight: 700; font-size: calc(14px * var(--k)); letter-spacing: 0.05em; text-transform: uppercase; padding: calc(5px * var(--k)) 10px; border-radius: 8px; display: flex; justify-content: space-between; }
     .a4-dayhead span { letter-spacing: 0; text-transform: none; opacity: 0.85; }
