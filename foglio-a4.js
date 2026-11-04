@@ -151,7 +151,7 @@ const FOGLIO_A4 = (() => {
     .a4-doc { color: #1e293b; font-weight: 700; }
     .a4-doc.a4-via { display: none !important; }
     .a4-vedi { color: #991b1b; font-weight: 700; }
-    .a4-sospesa { background: rgba(148, 163, 184, 0.2); }
+    .a4-sospesa { background: transparent; }
     .a4-sospesa .a4-txt b { color: #64748b; }
     /* barrato disegnato con una linea vera: html2canvas metterebbe la riga di text-decoration sopra il testo */
     .a4-barrato { position: relative; display: inline-block; font-style: normal; }
