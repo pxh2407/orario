@@ -137,12 +137,12 @@ const FOGLIO_A4 = (() => {
     .a4-day { margin-bottom: calc(10px * var(--k)); }
     .a4-dayhead { background: #0d2538; color: #fff; font-weight: 700; font-size: calc(14px * var(--k)); letter-spacing: 0.05em; text-transform: uppercase; padding: calc(5px * var(--k)) 10px; border-radius: 8px; display: flex; justify-content: space-between; }
     .a4-dayhead span { letter-spacing: 0; text-transform: none; opacity: 0.85; }
-    .a4-row { display: flex; align-items: center; gap: 6px; padding: calc(4px * var(--k)) 3px; border-bottom: 1px solid #e2e8f0; }
-    .a4-gruppo { display: flex; border-bottom: 1.5px solid #94a3b8; }
+    .a4-row { display: flex; align-items: center; gap: 6px; padding: calc(4px * var(--k)) 3px; }
+    .a4-gruppo { display: flex; border: 1.5px solid #94a3b8; }
+    .a4-gruppo + .a4-gruppo { border-top: none; }
     .a4-ora { width: calc(46px * var(--k)); flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; text-align: center; font-weight: 700; font-size: calc(14px * var(--k)); line-height: 1.15; color: #1e293b; }
     .a4-alt .a4-ora { background: #d3dbe6; }
     .a4-righe { flex: 1; min-width: 0; }
-    .a4-righe .a4-row:last-child { border-bottom: none; }
     .a4-aula { width: 50px; height: 20px; line-height: 20px; flex-shrink: 0; text-align: center; color: #fff; font-weight: 700; font-size: 11.5px; border-radius: 5px; padding: 0; }
     /* docente subito dopo il titolo: va a capo solo se non c'è posto, e mai spezzato a metà */
     .a4-txt { min-width: 0; font-size: calc(16px * var(--k)); line-height: 1.25; }
