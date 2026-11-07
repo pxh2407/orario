@@ -1,8 +1,8 @@
 {
- "dal": "2026-11-02",
- "al": "2026-11-06",
- "aggiornato": "2026-11-03",
- "pubblicato": "2026-11-03T14:00:00.000Z",
+ "dal": "2026-11-09",
+ "al": "2026-11-13",
+ "aggiornato": "2026-11-05",
+ "pubblicato": "2026-11-07T19:13:16.122Z",
  "versioneImmagini": 1,
  "lezioni": [
   {
@@ -16,9 +16,7 @@
    "category": "Laboratori & Artigianato",
    "categoryColor": "bg-amber-600",
    "cod": "505",
-   "description": "",
-   "sospesa": true,
-   "riprende": "2026-11-09"
+   "description": ""
   },
   {
    "id": "LUN-1",
@@ -31,9 +29,7 @@
    "category": "Arte & Creatività",
    "categoryColor": "bg-emerald-500",
    "cod": "130",
-   "description": "Laboratorio artistico pratico dedicato alla pittura, all'esplorazione del colore su tela e all'acquerello. Cavalletti, tavolozze e colori ad olio e acrilico forniti per la libera espressione espressiva.",
-   "sospesa": true,
-   "riprende": "2026-11-09"
+   "description": "Laboratorio artistico pratico dedicato alla pittura, all'esplorazione del colore su tela e all'acquerello. Cavalletti, tavolozze e colori ad olio e acrilico forniti per la libera espressione espressiva."
   },
   {
    "id": "LUN-3",
@@ -46,9 +42,7 @@
    "category": "Artigianato & Moda",
    "categoryColor": "bg-amber-600",
    "cod": "550",
-   "description": "Creazione artigianale di accessori e monili unici riutilizzando tessuti pregiati, perle in legno, cordoncini e passamaneria con tecniche di ricamo e montaggio a mano.",
-   "sospesa": true,
-   "riprende": "2026-11-09"
+   "description": "Creazione artigianale di accessori e monili unici riutilizzando tessuti pregiati, perle in legno, cordoncini e passamaneria con tecniche di ricamo e montaggio a mano."
   },
   {
    "id": "LUN-2",
@@ -56,14 +50,12 @@
    "startTime": "16:30",
    "endTime": "18:30",
    "aula": "S09",
-   "title": "Vi racconto un film… \"The Dead - Gente di Dublino\"",
+   "title": "Vi racconto un film… \"Io non ho paura\"",
    "teacher": "ISGRO' A.N.",
    "category": "Cinema & Cultura",
    "categoryColor": "bg-sky-600",
    "cod": "020",
-   "description": "Analisi cinematografica, scomposizione visiva e approfondimento critico di pellicole storiche con visioni guidate di sequenze chiave e dibattito culturale in aula.",
-   "sospesa": true,
-   "riprende": "2026-11-09"
+   "description": "Analisi cinematografica, scomposizione visiva e approfondimento critico di pellicole storiche con visioni guidate di sequenze chiave e dibattito culturale in aula."
   },
   {
    "id": "LUN-6",
@@ -76,9 +68,7 @@
    "category": "Benessere & Movimento",
    "categoryColor": "bg-rose-600",
    "cod": "215",
-   "description": "Coreografie di gruppo a tempo di musica, passi sincroni e attività motoria a basso impatto per mantenere agilità, coordinazione e buonumore.",
-   "sospesa": true,
-   "riprende": "2026-11-09"
+   "description": "Coreografie di gruppo a tempo di musica, passi sincroni e attività motoria a basso impatto per mantenere agilità, coordinazione e buonumore."
   },
   {
    "id": "LUN-mv593b0c",
@@ -91,9 +81,7 @@
    "category": "Storia & Pensiero",
    "categoryColor": "bg-indigo-700",
    "cod": "420",
-   "description": "",
-   "sospesa": true,
-   "riprende": "2026-11-09"
+   "description": ""
   },
   {
    "id": "LUN-5",
@@ -106,9 +94,7 @@
    "category": "Arte & Creatività",
    "categoryColor": "bg-emerald-600",
    "cod": "515",
-   "description": "Tecniche di decorazione pittorica applicate a seta, lino e cotone. Utilizzo di colori specifici per tessuti, stencil, sfumature ed effetti a rilievo.",
-   "sospesa": true,
-   "riprende": "2026-11-09"
+   "description": "Tecniche di decorazione pittorica applicate a seta, lino e cotone. Utilizzo di colori specifici per tessuti, stencil, sfumature ed effetti a rilievo."
   },
   {
    "id": "LUN-4",
@@ -121,9 +107,7 @@
    "category": "Giochi & Socialità",
    "categoryColor": "bg-purple-600",
    "cod": "245",
-   "description": "Tavoli di gioco strategico e socialità. Studio delle regole federali, combinazioni di carte, prese dal monte scarti e gestione del pozzetto con tornei amichevoli.",
-   "sospesa": true,
-   "riprende": "2026-11-09"
+   "description": "Tavoli di gioco strategico e socialità. Studio delle regole federali, combinazioni di carte, prese dal monte scarti e gestione del pozzetto con tornei amichevoli."
   },
   {
    "id": "LUN-8",
@@ -136,9 +120,7 @@
    "category": "Benessere & Movimento",
    "categoryColor": "bg-rose-600",
    "cod": "215",
-   "description": "Seconda sessione serale di danze collettive su ritmi folk e latini per stimolare l'equilibrio, il senso del ritmo e la mobilità fisica.",
-   "sospesa": true,
-   "riprende": "2026-11-09"
+   "description": "Seconda sessione serale di danze collettive su ritmi folk e latini per stimolare l'equilibrio, il senso del ritmo e la mobilità fisica."
   },
   {
    "id": "LUN-7",
@@ -151,9 +133,7 @@
    "category": "Territorio & Tradizioni",
    "categoryColor": "bg-blue-600",
    "cod": "600",
-   "description": "Itinerario geografico, letterario e poetico attraverso i panorami, le coste e i borghi siciliani che hanno ispirato grandi scrittori e artisti del Novecento.",
-   "sospesa": true,
-   "riprende": "2026-11-09"
+   "description": "Itinerario geografico, letterario e poetico attraverso i panorami, le coste e i borghi siciliani che hanno ispirato grandi scrittori e artisti del Novecento."
   },
   {
    "id": "MAR-1",
@@ -520,19 +500,6 @@
    "description": ""
   },
   {
-   "id": "GIO-4",
-   "day": "GIOVEDÌ",
-   "startTime": "17:30",
-   "endTime": "18:30",
-   "aula": "S09",
-   "title": "Giorgio La Pira",
-   "teacher": "MAFERA C.",
-   "category": "Storia & Pensiero Civile",
-   "categoryColor": "bg-indigo-700",
-   "cod": "460",
-   "description": "Approfondimento storico e filosofico sulla figura di Giorgio La Pira: il politico siciliano \"sindaco santo\", costruttore instancabile di ponti di pace e dialogo mediterraneo."
-  },
-  {
    "id": "VEN-dghgkjbz",
    "day": "VENERDÌ",
    "startTime": "15:30",
@@ -564,8 +531,8 @@
    "startTime": "16:30",
    "endTime": "Termine",
    "aula": "S09",
-   "title": "I VENERDI' DELLA LUTE - MOSAICO '900 - \"Palmiro Togliatti\"",
-   "teacher": "MILAZZO F.",
+   "title": "I VENERDI' DELLA LUTE - MOSAICO '900 - \"Pietro Nenni\"",
+   "teacher": "NASTASI NINO",
    "category": "Evento Speciale / Plenaria",
    "categoryColor": "bg-indigo-900",
    "cod": "900",
@@ -595,6 +562,32 @@
    "category": "Benessere & Salute",
    "categoryColor": "bg-teal-600",
    "cod": "225",
+   "description": ""
+  },
+  {
+   "id": "GIO-tr260",
+   "day": "GIOVEDÌ",
+   "startTime": "17:30",
+   "endTime": "18:30",
+   "aula": "S05",
+   "title": "Tradizioni enogastronomiche",
+   "teacher": "PETTI C.",
+   "category": "Benessere",
+   "categoryColor": "bg-teal-600",
+   "cod": "260",
+   "description": ""
+  },
+  {
+   "id": "GIO-in710",
+   "day": "GIOVEDÌ",
+   "startTime": "18:30",
+   "endTime": "19:30",
+   "aula": "S05",
+   "title": "Inglese Avanzato",
+   "teacher": "SCIOTTO C.",
+   "category": "Lingue Straniere",
+   "categoryColor": "bg-blue-600",
+   "cod": "710",
    "description": ""
   }
  ]
