@@ -2,7 +2,7 @@
  "dal": "2026-11-16",
  "al": "2026-11-20",
  "aggiornato": "2026-11-14",
- "pubblicato": "2026-11-14T16:19:45.791Z",
+ "pubblicato": "2026-11-14T16:56:05.925Z",
  "versioneImmagini": 1,
  "lezioni": [
   {
@@ -260,7 +260,7 @@
    "endTime": "16:30",
    "aula": "S09",
    "title": "Canto Corale",
-   "teacher": "PICCIOLO S.",
+   "teacher": "",
    "category": "Musica & Voce",
    "categoryColor": "bg-violet-600",
    "cod": "140",
