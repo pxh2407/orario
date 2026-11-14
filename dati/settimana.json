@@ -2,7 +2,7 @@
  "dal": "2026-11-16",
  "al": "2026-11-20",
  "aggiornato": "2026-11-14",
- "pubblicato": "2026-11-14T16:56:05.925Z",
+ "pubblicato": "2026-11-14T17:01:41.330Z",
  "versioneImmagini": 1,
  "lezioni": [
   {
@@ -264,7 +264,8 @@
    "category": "Musica & Voce",
    "categoryColor": "bg-violet-600",
    "cod": "140",
-   "description": "Esercizi di impostazione vocale, respirazione diaframmatica, intonazione ed esecuzione polifonica di canti tradizionali e classici corali."
+   "description": "Esercizi di impostazione vocale, respirazione diaframmatica, intonazione ed esecuzione polifonica di canti tradizionali e classici corali.",
+   "nota": "Inizio alle 15:00"
   },
   {
    "id": "MER-11",

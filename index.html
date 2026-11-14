@@ -29,7 +29,7 @@
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
   <!-- Foglio A4 e testi delle lezioni sospese (in comune con Gestione Orario) -->
-  <script src="foglio-a4.js?v=25"></script>
+  <script src="foglio-a4.js?v=26"></script>
 
   <script>
     tailwind.config = {
@@ -454,6 +454,7 @@
                 <h3 class="text-sm font-bold text-slate-800 leading-snug group-hover:text-brand-teal transition-colors line-clamp-2 ${lesson.sospesa ? 'line-through decoration-red-600' : ''}">
                   ${escHtml(lesson.title)}
                 </h3>
+                ${lesson.nota ? `<p class="mt-1 text-xs font-bold text-red-700">${escHtml(lesson.nota)}</p>` : ''}
               </div>
 
               <!-- Teacher & Info footer -->
@@ -555,6 +556,7 @@
                 <span class="min-w-0 flex-grow">
                   <span class="block text-sm font-semibold text-slate-800 leading-tight ${l.sospesa ? 'line-through' : ''}">${escHtml(l.title)}</span>
                   ${l.sospesa ? `<span class="block text-xs font-bold text-red-700">SOSPESA · ${FOGLIO_A4.ripresaBreve(l)}</span>` : ''}
+                  ${l.nota ? `<span class="block text-xs font-bold text-red-700">${escHtml(l.nota)}</span>` : ''}
                   <span class="block text-xs text-slate-500 truncate">${escHtml(l.teacher)}</span>
                 </span>
                 <i class="ph-bold ph-caret-right text-slate-400"></i>
@@ -646,7 +648,8 @@
       // lezione sospesa: avviso in rosso sopra il titolo
       const avvisoSosp = document.getElementById('modalSospesa');
       avvisoSosp.textContent = lesson.sospesa ? '⚠ LEZIONE SOSPESA' + (lesson.motivo ? ' (' + lesson.motivo + ')' : '') + ' · ' + FOGLIO_A4.ripresaLunga(lesson) : '';
-      avvisoSosp.classList.toggle('hidden', !lesson.sospesa);
+      if (!lesson.sospesa && lesson.nota) avvisoSosp.textContent = lesson.nota;  // nota in rosso (es. "Inizio alle 15:00")
+      avvisoSosp.classList.toggle('hidden', !lesson.sospesa && !lesson.nota);
 
       const modal = document.getElementById('lessonModal');
       modal.classList.remove('hidden');

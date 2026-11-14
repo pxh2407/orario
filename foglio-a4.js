@@ -93,7 +93,7 @@ const FOGLIO_A4 = (() => {
     return `
       <div class="a4-row${l.sospesa ? ' a4-sospesa' : ''}">
         <div class="a4-aula" style="background:${colore}">${esc(l.aula)}</div>
-        <div class="a4-txt"><b>${l.sospesa ? `<em class="a4-barrato">${esc(l.title)}<i></i></em>` : esc(l.title)}</b><wbr>${l.teacher ? `<span class="a4-doc">${esc(l.teacher)}</span>` : ''}<wbr>${l.sospesa ? `<span class="a4-vedi">SOSPESA</span>` : ''}</div>
+        <div class="a4-txt"><b>${l.sospesa ? `<em class="a4-barrato">${esc(l.title)}<i></i></em>` : esc(l.title)}</b><wbr>${l.teacher ? `<span class="a4-doc">${esc(l.teacher)}</span>` : ''}<wbr>${l.nota && !l.sospesa ? `<span class="a4-vedi">${esc(l.nota)}</span>` : ''}<wbr>${l.sospesa ? `<span class="a4-vedi">SOSPESA</span>` : ''}</div>
       </div>`;
   }
   function blocchiNote(testi) {
