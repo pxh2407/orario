@@ -1,8 +1,8 @@
 {
- "dal": "2026-11-16",
- "al": "2026-11-20",
- "aggiornato": "2026-11-14",
- "pubblicato": "2026-11-14T17:01:41.330Z",
+ "dal": "2026-11-23",
+ "al": "2026-11-27",
+ "aggiornato": "2026-11-21",
+ "pubblicato": "2026-11-21T14:57:16.239Z",
  "versioneImmagini": 1,
  "lezioni": [
   {
@@ -50,7 +50,7 @@
    "startTime": "16:30",
    "endTime": "18:30",
    "aula": "S09",
-   "title": "Vi racconto un film… \"Persepolis\"",
+   "title": "Vi racconto un film… \"Lo spazio bianco\"",
    "teacher": "ISGRO' A.N.",
    "category": "Cinema & Cultura",
    "categoryColor": "bg-sky-600",
@@ -107,8 +107,7 @@
    "category": "Giochi & Socialità",
    "categoryColor": "bg-purple-600",
    "cod": "245",
-   "description": "Tavoli di gioco strategico e socialità. Studio delle regole federali, combinazioni di carte, prese dal monte scarti e gestione del pozzetto con tornei amichevoli.",
-   "sospesa": true
+   "description": "Tavoli di gioco strategico e socialità. Studio delle regole federali, combinazioni di carte, prese dal monte scarti e gestione del pozzetto con tornei amichevoli."
   },
   {
    "id": "LUN-8",
@@ -122,19 +121,6 @@
    "categoryColor": "bg-rose-600",
    "cod": "215",
    "description": "Seconda sessione serale di danze collettive su ritmi folk e latini per stimolare l'equilibrio, il senso del ritmo e la mobilità fisica."
-  },
-  {
-   "id": "LUN-7",
-   "day": "LUNEDÌ",
-   "startTime": "18:30",
-   "endTime": "19:30",
-   "aula": "S09",
-   "title": "Paesaggi dell'anima in Sicilia",
-   "teacher": "DI BELLA / GIORGIANNI",
-   "category": "Territorio & Tradizioni",
-   "categoryColor": "bg-blue-600",
-   "cod": "600",
-   "description": "Itinerario geografico, letterario e poetico attraverso i panorami, le coste e i borghi siciliani che hanno ispirato grandi scrittori e artisti del Novecento."
   },
   {
    "id": "MAR-1",
@@ -260,7 +246,7 @@
    "endTime": "16:30",
    "aula": "S09",
    "title": "Canto Corale",
-   "teacher": "",
+   "teacher": "PACI E.",
    "category": "Musica & Voce",
    "categoryColor": "bg-violet-600",
    "cod": "140",
@@ -317,14 +303,15 @@
    "category": "Benessere all'Aperto",
    "categoryColor": "bg-emerald-600",
    "cod": "230",
-   "description": "Tecnica di camminata sportiva e tonificazione dinamica per migliorare l'efficienza cardiorespiratoria ed il metabolismo attivo."
+   "description": "Tecnica di camminata sportiva e tonificazione dinamica per migliorare l'efficienza cardiorespiratoria ed il metabolismo attivo.",
+   "sospesa": true
   },
   {
-   "id": "MER-5",
-   "day": "MERCOLEDÌ",
-   "startTime": "16:30",
-   "endTime": "17:30",
-   "aula": "S06",
+   "id": "GIO-med",
+   "day": "GIOVEDÌ",
+   "startTime": "17:30",
+   "endTime": "18:30",
+   "aula": "S09",
    "title": "Medicina Lutelisir",
    "teacher": "ALBANO G.",
    "category": "Salute & Prevenzione",
@@ -356,7 +343,8 @@
    "category": "Teatro & Tradizione",
    "categoryColor": "bg-purple-600",
    "cod": "100",
-   "description": "Dizione, espressività corporea e valorizzazione del patrimonio dialettale e letterario della commedia e poesia siciliana."
+   "description": "Dizione, espressività corporea e valorizzazione del patrimonio dialettale e letterario della commedia e poesia siciliana.",
+   "sospesa": true
   },
   {
    "id": "MER-8",
@@ -450,24 +438,11 @@
    "description": "Approfondimento delle figure di ballo liscio e latino-americano per consolidare posture, armonia di movimento ed eleganza."
   },
   {
-   "id": "GIO-5",
-   "day": "GIOVEDÌ",
-   "startTime": "17:30",
-   "endTime": "19:30",
-   "aula": "S06",
-   "title": "Lettura e Scrittura Creativa",
-   "teacher": "MILANI CASSIA",
-   "category": "Scrittura Narrativa",
-   "categoryColor": "bg-amber-600",
-   "cod": "640",
-   "description": "Esercizi pratici per dare voce ai propri ricordi e alla fantasia: costruzione dei personaggi, dialoghi, descrizioni evocative ed elaborazione di racconti brevi."
-  },
-  {
    "id": "GIO-5ki1s21d",
    "day": "GIOVEDÌ",
    "startTime": "17:30",
    "endTime": "19:30",
-   "aula": "S08",
+   "aula": "S07",
    "title": "Tutto sulle erbe",
    "teacher": "RUSSO M.",
    "category": "Benessere & Salute",
@@ -507,7 +482,7 @@
    "startTime": "16:30",
    "endTime": "Termine",
    "aula": "S09",
-   "title": "I VENERDI' DELLA LUTE - MOSAICO '900 - \"Piero Calamandrei\"",
+   "title": "I VENERDI' DELLA LUTE - MOSAICO '900 - \"Silvio Berlusconi - La discesa in campo\"",
    "teacher": "MILAZZO FABIO",
    "category": "Evento Speciale / Plenaria",
    "categoryColor": "bg-indigo-900",
@@ -567,11 +542,11 @@
    "description": ""
   },
   {
-   "id": "MAR-med",
-   "day": "MARTEDÌ",
-   "startTime": "15:30",
-   "endTime": "16:30",
-   "aula": "S06",
+   "id": "LUN-med",
+   "day": "LUNEDÌ",
+   "startTime": "16:30",
+   "endTime": "17:30",
+   "aula": "S08",
    "title": "Medicina Lutelisir",
    "teacher": "FALLITI G.",
    "category": "Salute & Prevenzione",
